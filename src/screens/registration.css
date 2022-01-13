@@ -1,0 +1,98 @@
+.registration {
+   height: 100%;
+   width: 100%;
+   position:relative;
+}
+
+.registration-bg{
+    position: absolute;
+    top: 0;
+    left: -5%;
+    height: 100%;
+    width: 220%;      
+    transform: rotate(90deg);
+    background-image: url("../assets/img/Background-registration.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.content{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.img-rules{
+    position: relative;
+    top: 130px;
+    background-image: url("../assets/img/rules.png");
+    width: 400px;
+    height: 320px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.title{
+        width: auto; /* 370px */
+        height: auto; /* 115px */
+        overflow: visible;
+        white-space: pre;
+        text-shadow: 0px 1px 2px #000000;
+        font-weight: 600;
+        font-family: "Inter-SemiBold", "Inter", sans-serif;
+        color: #f5bc00;
+        font-size: 32px;
+        letter-spacing: 0px;
+        line-height: 1.2;
+        text-transform: uppercase;
+        text-align: center;
+}
+
+.enter-game {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+.enter-game input {
+    border:(60, 0, 255, 0.5);
+    border-radius: 20px;
+    border-width: 3px;
+    text-align: center;
+    background-color: rgb(235, 235, 235);
+    caret-color:rgb(51, 51, 51);
+    font-size:16px;
+    line-height : 1.4px;
+    padding: 15px;
+    color: rgb(51, 51, 51);
+}
+
+.enter-game input:focus {
+    border-color:rgb(60, 0, 255);
+}
+
+.enter-game__button {
+  width: 130px;
+  border-radius: 30%;
+  padding:10px;
+  background-color: rgb(255, 183, 0);
+  color:rgb(60, 0, 255);
+  font-size:19px;
+  text-align: center;
+}
+
+.enter-game__button:hover {
+    background-color:rgb(0, 119, 255);
+    color:rgb(255, 255, 255);
+}
+
+.enter-game__button:focus{
+    background-color:rgb(0, 136, 255);
+    color: rgb(255, 255, 255);
+}
