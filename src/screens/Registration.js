@@ -1,6 +1,7 @@
 import "./registration.css";
 
 import { Component } from "react/cjs/react.production.min";
+import rules from "../assets/img/rules.png";
 
 //Components
 
@@ -16,17 +17,25 @@ class Registration extends Component {
         return (
             <div className="registration">
                 <div className="registration-bg"></div>
-                {/* <div className="content">
+                <div className="content">
                     <h1 className="title">
                         Rock Scissors Paper
                         <br />&<br /> Lizard Spock
                     </h1>
                     <div className="enter-game">
                         <input type="text" placeholder="Player Name"></input>
-                        <div className="enter-game__button">GO!</div>
+                        <button>GO!</button>
                     </div>
-                    <div className="img-rules"></div>
-                </div> */}
+
+                    <img
+                        src={rules}
+                        alt="Rules"
+                        // size 500 x 413, so 500/413=350/290
+                        // then it will be scaled based on device
+                        width="350"
+                        height="290"
+                    />
+                </div>
             </div>
         );
     }
