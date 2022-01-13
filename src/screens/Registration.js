@@ -8,9 +8,7 @@ import rules from "../assets/img/rules.png";
 class Registration extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isRegistered: false,
-        };
+        this.state = {};
     }
 
     render() {

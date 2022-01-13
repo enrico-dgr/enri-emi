@@ -1,18 +1,26 @@
 .game {
     height: 100%;
     width: 100%;
-    position:relative;
- }
- 
- .game-bg{
-     position: absolute;
-     top: 0;
-     left: -5%;
-     height: 100%;
-     width: 220%;      
-     transform: rotate(90deg);
-     background-image: url("../assets/img/Background-game.gif");
-     background-size: cover;
-     background-repeat: no-repeat;
-     background-position: center;
- }
+    position: relative;
+    overflow: hidden;
+}
+
+/* see registration.css => .registration-bg 
+for explanations */
+.game-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top left;
+    transform: rotate(90deg) translateY(-100%);
+    /* image size is 800 x 600 so... 800/600=100/75 */
+    height: 75vh;
+    width: 100vh;
+    background-size: cover;
+    background-image: url("../assets/img/Background-game.gif");
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
