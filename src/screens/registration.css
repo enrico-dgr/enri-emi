@@ -1,32 +1,48 @@
 .registration {
-   height: 100%;
-   width: 100%;
-   position:relative;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
-.registration-bg{
+.registration-bg {
     position: absolute;
     top: 0;
-    left: -5%;
-    height: 100%;
-    width: 220%;      
-    transform: rotate(90deg);
-    background-image: url("../assets/img/Background-registration.gif");
+    left: 0;
+    /* This line lets the div rotate around the top left cornet */
+    transform-origin: top left;
+    /* Rotating of 90deg around the top left corner,
+    causes the ex-top border to lie upon the new-right border
+    (they're actually not 'ex' or 'new' in dom, but they can be
+    considered like this, visually speaking, for the user).
+    So, after rotation, the div will hide on the left side of
+    phone and you move it to the right (visually speaking, but
+    you move it up, in terms of div) with 'translateY(-100%)' */
+    transform: rotate(90deg) translateY(-100%);
+    /* image size is 800 x 600 so... 800/600=100/75 */
+    height: 75vh;
+    width: 100vh;
+    /* then you use 'cover' because the 'div' has same size as the image */
     background-size: cover;
+    background-image: url("../assets/img/Background-registration.gif");
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: bottom left;
+    /* random staff probably useless but NOT dangerous, 
+    no need to remove. */
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
-.content{
+.content {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    
 }
 
-.img-rules{
+.img-rules {
     position: relative;
     top: 130px;
     background-image: url("../assets/img/rules.png");
@@ -37,62 +53,62 @@
     background-position: center;
 }
 
-.title{
-        width: auto; /* 370px */
-        height: auto; /* 115px */
-        overflow: visible;
-        white-space: pre;
-        text-shadow: 0px 1px 2px #000000;
-        font-weight: 600;
-        font-family: "Inter-SemiBold", "Inter", sans-serif;
-        color: #f5bc00;
-        font-size: 32px;
-        letter-spacing: 0px;
-        line-height: 1.2;
-        text-transform: uppercase;
-        text-align: center;
+.title {
+    width: auto; /* 370px */
+    height: auto; /* 115px */
+    overflow: visible;
+    white-space: pre;
+    text-shadow: 0px 1px 2px #000000;
+    font-weight: 600;
+    font-family: "Inter-SemiBold", "Inter", sans-serif;
+    color: #f5bc00;
+    font-size: 32px;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 .enter-game {
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
 }
 
 .enter-game input {
-    border:(60, 0, 255, 0.5);
+    border: (60, 0, 255, 0.5);
     border-radius: 20px;
     border-width: 3px;
     text-align: center;
     background-color: rgb(235, 235, 235);
-    caret-color:rgb(51, 51, 51);
-    font-size:16px;
-    line-height : 1.4px;
+    caret-color: rgb(51, 51, 51);
+    font-size: 16px;
+    line-height: 1.4px;
     padding: 15px;
     color: rgb(51, 51, 51);
 }
 
 .enter-game input:focus {
-    border-color:rgb(60, 0, 255);
+    border-color: rgb(60, 0, 255);
 }
 
 .enter-game__button {
-  width: 130px;
-  border-radius: 30%;
-  padding:10px;
-  background-color: rgb(255, 183, 0);
-  color:rgb(60, 0, 255);
-  font-size:19px;
-  text-align: center;
+    width: 130px;
+    border-radius: 30%;
+    padding: 10px;
+    background-color: rgb(255, 183, 0);
+    color: rgb(60, 0, 255);
+    font-size: 19px;
+    text-align: center;
 }
 
 .enter-game__button:hover {
-    background-color:rgb(0, 119, 255);
-    color:rgb(255, 255, 255);
+    background-color: rgb(0, 119, 255);
+    color: rgb(255, 255, 255);
 }
 
-.enter-game__button:focus{
-    background-color:rgb(0, 136, 255);
+.enter-game__button:focus {
+    background-color: rgb(0, 136, 255);
     color: rgb(255, 255, 255);
 }
