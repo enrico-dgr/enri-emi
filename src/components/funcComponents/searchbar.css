@@ -1,0 +1,28 @@
+.searchbar {
+    display: flex;
+    background-color: #c74545;
+}
+
+.searchbar input[type="text"] {
+    flex-grow: 1;
+    border-width: 0 0 1px 0;
+    margin: 15px 10px 15px 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ac4444;
+    border-style: none;
+    text-shadow: none;
+    text-transform: uppercase;
+    color: #f5eded;
+    letter-spacing: 2px;
+    outline: none;
+}
+
+.searchbar input[type="text"]::-webkit-input-placeholder {
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+.searchbar input[type="text"]:focus {
+    background-color: rgba(0, 0, 0, 0.2);
+}

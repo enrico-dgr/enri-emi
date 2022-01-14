@@ -1,0 +1,35 @@
+.scoreboard {
+    background: #fff;
+    width: 700px;
+    margin: 70px auto;
+    box-shadow: 0 2px 0 #ac4444;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.player {
+    display: flex;
+    font-size: 1.2em;
+    border-bottom: solid 2px #eeeeee;
+    letter-spacing: 2px;
+}
+
+.player:last-of-type {
+    border-bottom-color: #ac4444;
+}
+
+.player-name:hover .remove-player {
+    visibility: visible;
+}
+
+.player-name,
+.counter-score {
+    color: #2f2366;
+}
+
+.player-name {
+    font-family: "Architects Daughter", cursive;
+    flex-grow: 1;
+    line-height: 3.5em;
+    padding-left: 10px;
+}

@@ -12,6 +12,7 @@ class App extends Component {
 
         this.state = {
             isRegistered: false,
+            playerName: "",
             transition: true,
             transitionClass: "",
         };
@@ -36,7 +37,34 @@ class App extends Component {
 
     componentDidMount() {
         this.enterAnim();
+
+        // fake API call
+        let scoreboard = JSON.parse(localStorage.getItem("scoreboard"));
+
+        if (scoreboard === null) {
+            localStorage.setItem(
+                "scoreboard",
+                JSON.stringify([
+                    { playerName: "Filippo", victories: 3 },
+                    { playerName: "Saro", victories: 2 },
+                    { playerName: "Giovanni", victories: 7 },
+                ])
+            );
+        }
     }
+
+    onClickRegistration = (playerName) => {
+        this.setState({ isRegistered: true, playerName });
+
+        let scoreboard = JSON.parse(localStorage.getItem("scoreboard"));
+        if (scoreboard.findIndex((p) => p.playerName === playerName) < 0) {
+            scoreboard.push({
+                playerName,
+                victories: 0,
+            });
+        }
+        localStorage.setItem("scoreboard", JSON.stringify(scoreboard));
+    };
 
     render() {
         return (
@@ -46,8 +74,14 @@ class App extends Component {
                         className={`transition-screen ${this.state.transitionClass}`}
                     ></div>
                 )}
-                {this.state.isRegistered === false && <Registration />}
-                {this.state.isRegistered && <Game />}
+                {this.state.isRegistered === false && (
+                    <Registration
+                        onClickRegistration={this.onClickRegistration}
+                    />
+                )}
+                {this.state.isRegistered && (
+                    <Game playerName={this.state.playerName} />
+                )}
             </div>
         );
     }

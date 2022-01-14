@@ -1,6 +1,7 @@
 import "./registration.css";
 
-import { Component } from "react/cjs/react.production.min";
+import { Component } from "react";
+import PropTypes from "prop-types";
 import rules from "../assets/img/rules.png";
 
 //Components
@@ -8,8 +9,21 @@ import rules from "../assets/img/rules.png";
 class Registration extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            inputText: "",
+        };
     }
+
+    onChangeInput = (e) => {
+        this.setState({
+            inputText: e.target.value,
+        });
+    };
+
+    addLocalStorage = () => {
+        localStorage.setItem("playerName", this.state.inputText);
+        this.props.onClickRegistration(this.state.inputText);
+    };
 
     render() {
         return (
@@ -21,10 +35,13 @@ class Registration extends Component {
                         <br />&<br /> Lizard Spock
                     </h1>
                     <div className="enter-game">
-                        <input type="text" placeholder="Player Name"></input>
-                        <button>GO!</button>
+                        <input
+                            type="text"
+                            placeholder="Player Name"
+                            onChange={this.onChangeInput}
+                        />
+                        <button onClick={this.addLocalStorage}>GO!</button>
                     </div>
-
                     <img
                         src={rules}
                         alt="Rules"
@@ -38,5 +55,13 @@ class Registration extends Component {
         );
     }
 }
+
+Registration.defaultProps = {
+    onClickRegistration: () => undefined,
+};
+
+Registration.propTypes = {
+    onClickRegistration: PropTypes.func,
+};
 
 export default Registration;
