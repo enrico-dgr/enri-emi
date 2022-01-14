@@ -28,9 +28,7 @@ class Game extends Component {
         };
     }
 
-    updateScoreboard = () => {
-        let scoreboard = JSON.parse(localStorage.getItem("scoreboard"));
-
+    updateScoreboard = (scoreboard_) => {
         const updatePlayer = (p) => {
             if (p.playerName === this.props.playerName) {
                 return {
@@ -41,10 +39,29 @@ class Game extends Component {
             return p;
         };
 
-        scoreboard = scoreboard.map(updatePlayer);
+        scoreboard_ = scoreboard_.map(updatePlayer);
 
-        localStorage.setItem("scoreboard", JSON.stringify(scoreboard));
-        this.setState({ scoreboard: [...scoreboard] });
+        localStorage.setItem("scoreboard", JSON.stringify(scoreboard_));
+
+        return scoreboard_;
+    };
+
+    endMatch = () => {
+        let timeOutState = {
+            showScoreboard: true,
+            isEnd: false,
+            scoreboard: JSON.parse(localStorage.getItem("scoreboard")),
+        };
+
+        if (this.state.yourWins > 2) {
+            timeOutState.scoreboard = this.updateScoreboard(
+                timeOutState.scoreboard
+            );
+        }
+
+        setTimeout(() => {
+            this.setState(timeOutState);
+        }, 3000);
     };
 
     onClickChoose = (move) => {
@@ -66,18 +83,10 @@ class Game extends Component {
 
         if (newState.yourWins > 2) {
             newState = { ...newState, result: "YOU WIN", isEnd: true };
-            this.updateScoreboard();
         } else if (newState.enemyWins > 2) {
             newState = { ...newState, result: "ENEMY WINS", isEnd: true };
         }
-        let timeOutState = {};
-        if (newState.isEnd) {
-            timeOutState.showScoreboard = true;
-            timeOutState.isEnd = false;
-        }
-        setTimeout(() => {
-            this.setState(timeOutState);
-        }, 3000);
+
         this.setState(newState);
     };
 
@@ -133,12 +142,14 @@ class Game extends Component {
 
                     {this.state.isEnd && (
                         <Modal>
+                            {this.endMatch()}
                             <h1>{this.state.result}</h1>
                         </Modal>
                     )}
-                    {this.state.showScoreboard && (
-                        <Scoreboard scores={this.state.scoreboard} />
-                    )}
+                    {this.state.showScoreboard &&
+                        this.state.scoreboard.length > 0 && (
+                            <Scoreboard scores={this.state.scoreboard} />
+                        )}
                 </div>
             </div>
         );

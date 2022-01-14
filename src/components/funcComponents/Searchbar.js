@@ -1,4 +1,7 @@
+import "./searchbar.css";
+
 import PropTypes from "prop-types";
+
 const Searchbar = (props) => {
     let onChange = (e) => {
         props.onChange(e.target.value);

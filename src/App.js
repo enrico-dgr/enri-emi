@@ -9,7 +9,7 @@ import Registration from "./screens/Registration.js";
 class App extends Component {
     constructor(props) {
         super(props);
-
+        localStorage.clear();
         this.state = {
             isRegistered: false,
             playerName: "",

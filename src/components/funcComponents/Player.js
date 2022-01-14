@@ -1,13 +1,15 @@
+import "./player.css";
+
 import PropTypes from "prop-types";
 import React from "react";
 
 const Player = (props) => {
     return (
-        <div className="player" key={props.playerName + props.index}>
-            <p>{props.index}</p>
-            <span className="player-name">{this.props.playerName}</span>
+        <div className="player">
+            <span className="player__position">{props.index + 1}.</span>
+            <span className="player__name">{props.playerName}</span>
 
-            <p>{props.score}</p>
+            <span className="player__score">{props.score}</span>
         </div>
     );
 };

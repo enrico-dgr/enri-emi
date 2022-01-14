@@ -1,6 +1,7 @@
 .searchbar {
-    display: flex;
     background-color: #c74545;
+    display: flex;
+    width: 100%;
 }
 
 .searchbar input[type="text"] {

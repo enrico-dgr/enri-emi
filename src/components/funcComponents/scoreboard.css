@@ -1,35 +1,40 @@
 .scoreboard {
-    background: #fff;
-    width: 700px;
-    margin: 70px auto;
+    background: transparent;
     box-shadow: 0 2px 0 #ac4444;
     border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 70px auto;
+    width: 80vw;
+    height: 60vh;
     overflow: hidden;
 }
 
-.player {
-    display: flex;
-    font-size: 1.2em;
-    border-bottom: solid 2px #eeeeee;
+.scoreboard__list {
+    overflow-y: auto;
+    width: 100%;
+}
+
+/* width */
+.scoreboard__list::-webkit-scrollbar {
+    display: none;
+}
+
+.scoreboard > button {
+    display: block;
+    font-size: 17px;
+    margin: 0;
+    padding: 9px;
+    background-color: #ac4444;
+    border-radius: 5px;
+    border: 9px solid #c74545;
+    color: #fff;
     letter-spacing: 2px;
-}
-
-.player:last-of-type {
-    border-bottom-color: #ac4444;
-}
-
-.player-name:hover .remove-player {
-    visibility: visible;
-}
-
-.player-name,
-.counter-score {
-    color: #2f2366;
-}
-
-.player-name {
-    font-family: "Architects Daughter", cursive;
-    flex-grow: 1;
-    line-height: 3.5em;
-    padding-left: 10px;
+    font-weight: bold;
+    text-shadow: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
