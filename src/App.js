@@ -3,8 +3,10 @@ import "./App.css";
 import React, { Component } from "react";
 
 //Screens
-import Game from "./screens/Game.js";
+import Game from "./screens/Game/Game.js";
 import Registration from "./screens/Registration.js";
+import ScoreboardTransition from "./screens/Game/ScoreboardTransition";
+import Transition from "./components/classComponents/Transition";
 import fakeAPI from "./services/Game/scoreboard.api.fake";
 
 class App extends Component {
@@ -22,7 +24,7 @@ class App extends Component {
         };
     }
 
-    transitionOff = () => {
+    onExitTransition = () => {
         setTimeout(() => {
             this.setState({
                 transition: false,
@@ -30,36 +32,19 @@ class App extends Component {
         }, 750);
     };
 
-    enterAnim = () => {
-        setTimeout(() => {
-            this.setState({
-                transitionClass: "transition-screen-enter",
-            });
-            this.transitionOff();
-        }, 1000);
-    };
-
     componentDidMount() {
-        this.enterAnim();
         this.setState({
             scoreboard: fakeAPI.scoreboardFixture(),
         });
     }
 
-    gameTransitionDisable = () => {
+    onExitGameTransition = () => {
+        this.setState({
+            isRegistered: true,
+        });
         setTimeout(() => {
             this.setState({ gameTransition: false });
         }, 1000);
-    };
-
-    gameTransitionExit = () => {
-        setTimeout(() => {
-            this.setState({
-                gameTransitionClass: "game-transition-screen--exit",
-                isRegistered: true,
-            });
-            this.gameTransitionDisable();
-        }, 2000);
     };
 
     onClickRegistration = (playerName) => {
@@ -71,28 +56,25 @@ class App extends Component {
             playerName,
             scoreboard,
         });
-
-        setTimeout(() => {
-            this.setState({
-                gameTransitionClass: "game-transition-screen--enter",
-            });
-            this.gameTransitionExit();
-        }, 10);
     };
 
     render() {
         return (
             <div className="project-enri-emi">
-                {this.state.transition && (
-                    <div
-                        className={`transition-screen ${this.state.transitionClass}`}
-                    ></div>
-                )}
-                {this.state.gameTransition && (
-                    <div
-                        className={`game-transition-screen ${this.state.gameTransitionClass}`}
-                    ></div>
-                )}
+                <Transition
+                    defaultClass={"transition-screen"}
+                    enterClass={""}
+                    exitClass={"transition-screen--exit"}
+                    timeoutBeforeEnter={0}
+                    timeoutBeforeExit={1000}
+                    transitionOn={this.state.transition}
+                    onExit={this.onExitTransition}
+                />
+                <ScoreboardTransition
+                    transitionOn={this.state.gameTransition}
+                    onExit={this.onExitGameTransition}
+                />
+
                 {this.state.isRegistered === false && (
                     <Registration
                         onClickRegistration={this.onClickRegistration}
