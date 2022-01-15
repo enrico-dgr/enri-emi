@@ -1,0 +1,32 @@
+.player {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.368);
+    border-bottom: solid 2px #eeeeee;
+    display: flex;
+    font-size: 1.2em;
+    letter-spacing: 2px;
+    width: 100%;
+}
+
+.player:last-of-type {
+    border-bottom-color: #ac4444;
+}
+
+.player__position {
+    font-weight: bolder;
+    padding-left: 20px;
+    color: #1bb400;
+}
+
+.player__name {
+    color: #fffb00;
+    font-weight: bolder;
+    font-family: "Architects Daughter", cursive;
+    flex-grow: 1;
+    line-height: 3.5em;
+    padding-left: 10px;
+}
+.player__score {
+    color: #fd00fd;
+    padding-right: 20px;
+}

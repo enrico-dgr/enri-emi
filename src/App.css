@@ -14,15 +14,10 @@
     opacity: 1;
     pointer-events: none;
     transition: opacity 0.8s;
-    z-index: 300;
+    z-index: 3;
 }
 
 .transition-screen-enter {
-    opacity: 0;
-    transition: opacity 0.8s;
-}
-
-.transition-screen-exit {
     opacity: 0;
     transition: opacity 0.8s;
 }
