@@ -92,7 +92,7 @@ class Game extends Component {
                     </h1>
                     {this.state.showScoreboard === false && (
                         <div className="game__content__match">
-                            <h2>Round: {this.state.round}</h2>
+                            <h2 className="round">Round: {this.state.round}</h2>
 
                             <div
                                 className={
@@ -104,7 +104,7 @@ class Game extends Component {
                                     move={this.state.enemyMove}
                                 />
                                 <p className={"score"}>
-                                    Wins:{this.state.enemyWins}
+                                    Wins: {this.state.enemyWins}
                                 </p>
                             </div>
                             <img
@@ -119,7 +119,7 @@ class Game extends Component {
                                 }
                             >
                                 <p className={"score"}>
-                                    Wins:{this.state.yourWins}
+                                    Wins: {this.state.yourWins}
                                 </p>
 
                                 <Select
