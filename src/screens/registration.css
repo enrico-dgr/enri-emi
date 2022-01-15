@@ -60,6 +60,27 @@
     text-align: center;
 }
 
+.rules-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rules{
+    margin: 5% 0 5% 0;
+    white-space: pre;
+    text-shadow: 1px 2px 3px #000000;
+    font-weight: 600;
+    font-family: "Inter-SemiBold", "Inter", sans-serif;
+    color: #f5bc00;
+    font-size: 22px;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+
 .enter-game {
     display: flex;
     flex-direction: column;

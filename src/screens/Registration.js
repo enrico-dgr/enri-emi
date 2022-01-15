@@ -42,14 +42,17 @@ class Registration extends Component {
                         />
                         <button onClick={this.addLocalStorage}>GO!</button>
                     </div>
-                    <img
-                        src={rules}
-                        alt="Rules"
-                        // size 500 x 413, so 500/413=350/290
-                        // then it will be scaled based on device
-                        width="350"
-                        height="290"
-                    />
+                    <div className={"rules-content"}>
+                        <h1 className={"rules"}>How to play:</h1>
+                        <img
+                            src={rules}
+                            alt="Rules"
+                            // size 500 x 413, so 500/413=350/290
+                            // then it will be scaled based on device
+                            width="350"
+                            height="290"
+                        />
+                    </div>
                 </div>
             </div>
         );
