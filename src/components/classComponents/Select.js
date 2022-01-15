@@ -14,6 +14,12 @@ class Select extends Component {
         };
     }
 
+    getImage = () => {
+        return this.props.imgs[
+            this.props.moves.findIndex((move) => move === this.props.move)
+        ];
+    };
+
     onClickShowModal = () => {
         let newState = {};
 
@@ -39,6 +45,12 @@ class Select extends Component {
                     onClick={this.onClickShowModal}
                 >
                     <p>{this.props.move}</p>
+                    <img
+                        src={this.getImage()}
+                        alt={this.props.move}
+                        height="100px"
+                        width="100px"
+                    />
                 </div>
                 {this.state.modalOn && (
                     <Modal
@@ -62,7 +74,13 @@ class Select extends Component {
                 className={`select__modal__button`}
                 onClick={this.onClickChoose(move)}
             >
-                <p>{move}</p>
+                <img
+                    src={this.props.imgs[i]}
+                    alt={move}
+                    width="100px"
+                    height="100px"
+                />
+                <p className="mov">{move}</p>
             </div>
         );
     };
@@ -70,12 +88,14 @@ class Select extends Component {
 
 Select.defaultProps = {
     disable: false,
+    imgs: [],
     move: "",
     moves: [],
     onClickChoose: () => undefined,
 };
 Select.propTypes = {
     disable: PropTypes.bool,
+    imgs: PropTypes.array,
     move: PropTypes.string,
     moves: PropTypes.array,
     onClickChoose: PropTypes.func,

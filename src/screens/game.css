@@ -2,7 +2,8 @@
     height: 100%;
     width: 100%;
     position: relative;
-    overflow: hidden;
+    overflow-y: visible;
+    overflow-x: hidden;
 }
 
 /* see registration.css => .registration-bg 
@@ -23,6 +24,74 @@ for explanations */
     margin: 0;
     padding: 0;
     border: 0;
+}
+
+.matchmaking-transition-screen {
+    background-image: url("../assets/img/Match-making.gif");
+    background-size: contain;
+    background-repeat: repeat-y;
+    background-position: 50% 30%;
+
+    position: absolute;
+    top: -20vh;
+    left: -10vw;
+    height: 120vh;
+    width: 120vw;
+    opacity: 0;
+    transition: opacity 1s;
+    z-index: 3;
+}
+
+.matchmaking-transition-screen--enter {
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.matchmaking-transition-screen--exit {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 2s;
+}
+
+.matchmaking-transition-screen .loader-dots {
+    position: absolute;
+    bottom: 0;
+    left: 180px;
+}
+
+.loader-dots {
+    margin: 0;
+    padding: 0.5em 2.2em 0.5em 1em;
+    border-radius: 0.3em;
+    color: #fff;
+    border: 1px solid #fff;
+    background: rgba(0, 0, 0, 0.329);
+    display: block;
+    transform: translateX(-50%) translateY(-50%);
+    font: 300 1em/1.5 "Lato", sans-serif;
+    letter-spacing: 1px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.loader-dots:after {
+    content: "....";
+    width: 0;
+    position: absolute;
+    overflow: hidden;
+    animation: loader-dots-animation 1s infinite;
+}
+
+@keyframes loader-dots-animation {
+    0% {
+        width: 0em;
+    }
+    50% {
+        width: 1.2em;
+    }
+    100% {
+        width: 0em;
+    }
 }
 
 .game__content {

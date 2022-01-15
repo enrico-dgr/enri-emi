@@ -5,6 +5,7 @@ import React, { Component } from "react";
 //Screens
 import Game from "./screens/Game.js";
 import Registration from "./screens/Registration.js";
+import fakeAPI from "./services/Game/scoreboard.api.fake";
 
 class App extends Component {
     constructor(props) {
@@ -13,8 +14,11 @@ class App extends Component {
         this.state = {
             isRegistered: false,
             playerName: "",
+            scoreboard: [],
             transition: true,
             transitionClass: "",
+            gameTransition: false,
+            gameTransitionClass: "",
         };
     }
 
@@ -37,33 +41,43 @@ class App extends Component {
 
     componentDidMount() {
         this.enterAnim();
-
-        // fake API call
-        let scoreboard = JSON.parse(localStorage.getItem("scoreboard"));
-
-        if (scoreboard === null) {
-            localStorage.setItem(
-                "scoreboard",
-                JSON.stringify([
-                    { playerName: "Filippo", victories: 3 },
-                    { playerName: "Saro", victories: 2 },
-                    { playerName: "Giovanni", victories: 7 },
-                ])
-            );
-        }
+        this.setState({
+            scoreboard: fakeAPI.scoreboardFixture(),
+        });
     }
 
-    onClickRegistration = (playerName) => {
-        this.setState({ isRegistered: true, playerName });
+    gameTransitionDisable = () => {
+        setTimeout(() => {
+            this.setState({ gameTransition: false });
+        }, 1000);
+    };
 
-        let scoreboard = JSON.parse(localStorage.getItem("scoreboard"));
-        if (scoreboard.findIndex((p) => p.playerName === playerName) < 0) {
-            scoreboard.push({
-                playerName,
-                victories: 0,
+    gameTransitionExit = () => {
+        setTimeout(() => {
+            this.setState({
+                gameTransitionClass: "game-transition-screen--exit",
+                isRegistered: true,
             });
-        }
-        localStorage.setItem("scoreboard", JSON.stringify(scoreboard));
+            this.gameTransitionDisable();
+        }, 2000);
+    };
+
+    onClickRegistration = (playerName) => {
+        // if player exists, it does nothing
+        const scoreboard = fakeAPI.initializePlayer(playerName);
+
+        this.setState({
+            gameTransition: true,
+            playerName,
+            scoreboard,
+        });
+
+        setTimeout(() => {
+            this.setState({
+                gameTransitionClass: "game-transition-screen--enter",
+            });
+            this.gameTransitionExit();
+        }, 10);
     };
 
     render() {
@@ -74,13 +88,21 @@ class App extends Component {
                         className={`transition-screen ${this.state.transitionClass}`}
                     ></div>
                 )}
+                {this.state.gameTransition && (
+                    <div
+                        className={`game-transition-screen ${this.state.gameTransitionClass}`}
+                    ></div>
+                )}
                 {this.state.isRegistered === false && (
                     <Registration
                         onClickRegistration={this.onClickRegistration}
                     />
                 )}
                 {this.state.isRegistered && (
-                    <Game playerName={this.state.playerName} />
+                    <Game
+                        playerName={this.state.playerName}
+                        scoreboard={this.state.scoreboard}
+                    />
                 )}
             </div>
         );

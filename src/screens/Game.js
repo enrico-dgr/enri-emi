@@ -15,6 +15,7 @@ class Game extends Component {
         super(props);
 
         this.moves = morracinese.getDefaultMoves();
+        this.movesImgs = morracinese.getDefaultMovesImgs();
         this.isScoreboardUpdated = false;
 
         this.state = {
@@ -26,19 +27,44 @@ class Game extends Component {
             enemyWins: 0,
             isEnd: false,
             showScoreboard: true,
-            scoreboard: [],
+            scoreboard: this.props.scoreboard,
+            matchmakingTransition: false,
+            matchmakingTransitionClass: "",
         };
     }
 
-    componentDidMount() {
-        this.setState({ scoreboard: fakeAPI.getScoreboard() });
-    }
+    matchmakingTransitionDisable = () => {
+        setTimeout(() => {
+            this.setState({
+                matchmakingTransition: false,
+            });
+        }, 5000);
+    };
+
+    matchmakingTransitionExit = () => {
+        setTimeout(() => {
+            this.setState({
+                matchmakingTransitionClass:
+                    "matchmaking-transition-screen--exit",
+                showScoreboard: false,
+            });
+            this.matchmakingTransitionDisable();
+        }, 5000);
+    };
 
     onClickNewMatch = () => {
         this.isScoreboardUpdated = false;
         this.setState({
-            showScoreboard: false,
+            matchmakingTransition: true,
         });
+
+        setTimeout(() => {
+            this.setState({
+                matchmakingTransitionClass:
+                    "matchmaking-transition-screen--enter",
+            });
+            this.matchmakingTransitionExit();
+        }, 10);
     };
 
     endMatch = () => {
@@ -93,19 +119,25 @@ class Game extends Component {
         return (
             <div className="game">
                 <div className="game-bg"></div>
+                {this.state.matchmakingTransition && (
+                    <div
+                        className={`matchmaking-transition-screen ${this.state.matchmakingTransitionClass}`}
+                    >
+                        <div className="loader-dots">Looking for a player</div>
+                    </div>
+                )}
                 {/* Game content */}
                 <div className="game__content">
                     <h1 className="title">
                         Rock Scissors Paper
                         <br />&<br /> Lizard Spock
                     </h1>
-                    {this.state.showScoreboard &&
-                        this.state.scoreboard.length > 0 && (
-                            <Scoreboard
-                                scores={this.state.scoreboard}
-                                onClickNewMatch={this.onClickNewMatch}
-                            />
-                        )}
+                    {this.state.showScoreboard && (
+                        <Scoreboard
+                            scores={this.state.scoreboard}
+                            onClickNewMatch={this.onClickNewMatch}
+                        />
+                    )}
                     {this.state.showScoreboard === false && (
                         <div className="game__content__match">
                             <h2 className="round">Round: {this.state.round}</h2>
@@ -118,6 +150,8 @@ class Game extends Component {
                                 <Select
                                     disable={true}
                                     move={this.state.enemyMove}
+                                    moves={this.moves}
+                                    imgs={this.movesImgs}
                                 />
                                 <p className={"score"}>
                                     Wins: {this.state.enemyWins}
@@ -141,6 +175,7 @@ class Game extends Component {
                                 <Select
                                     move={this.state.yourMove}
                                     moves={this.moves}
+                                    imgs={this.movesImgs}
                                     onClickChoose={this.onClickChoose}
                                 />
                             </div>

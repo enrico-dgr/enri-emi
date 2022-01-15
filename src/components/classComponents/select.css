@@ -1,13 +1,13 @@
 .select__button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 120px;
-        height: 120px;
-        background-color: #4c002e;
-        border: 7px double #d1470a;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 120px;
+    height: 120px;
+    background-color: #4c002e;
+    border: 7px double #d1470a;
+}
 
 .select__modal__button {
     display: flex;
@@ -17,4 +17,7 @@
     height: 120px;
     background-color: #4c002e;
     border: 7px double #d1470a;
+}
+
+.move {
 }

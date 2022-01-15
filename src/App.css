@@ -1,7 +1,13 @@
+body {
+    background-color: black;
+    overflow: hidden;
+}
+
 .project-enri-emi {
     width: 100vw;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: black;
+    overflow: hidden;
 }
 
 .transition-screen {
@@ -20,4 +26,30 @@
 .transition-screen-enter {
     opacity: 0;
     transition: opacity 0.8s;
+}
+
+.game-transition-screen {
+    background-image: url("./assets/img/rocket.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 3;
+}
+
+.game-transition-screen--enter {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.game-transition-screen--exit {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
 }

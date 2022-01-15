@@ -7,7 +7,7 @@
     align-items: center;
     margin: 70px auto;
     width: 80vw;
-    height: 60vh;
+    max-height: 60vh;
     overflow: hidden;
 }
 

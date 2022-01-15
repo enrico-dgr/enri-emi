@@ -3,6 +3,41 @@ const getScoreboard = () => JSON.parse(localStorage.getItem("scoreboard"));
 const setScoreboard = (scoreboard) =>
     localStorage.setItem("scoreboard", JSON.stringify(scoreboard));
 
+// saves a preconfigured scoreboard, if none exists, and returns it
+const scoreboardFixture = () => {
+    let scoreboard = getScoreboard();
+
+    if (scoreboard === null || scoreboard === undefined) {
+        scoreboard = [
+            { playerName: "Filippo", victories: 3 },
+            { playerName: "Saro", victories: 2 },
+            { playerName: "Giovanni", victories: 7 },
+        ];
+
+        setScoreboard(scoreboard);
+    }
+
+    return scoreboard;
+};
+
+/**
+ * If player exists, do nothing and always returns the scoreboard
+ */
+const initializePlayer = (playerName) => {
+    let scoreboard = getScoreboard();
+
+    if (scoreboard.findIndex((p) => p.playerName === playerName) < 0) {
+        scoreboard.push({
+            playerName,
+            victories: 0,
+        });
+
+        setScoreboard(scoreboard);
+    }
+
+    return scoreboard;
+};
+
 /**
  *
  * @param {string} playerName
@@ -31,5 +66,7 @@ const increasePlayerScore = (playerName) => {
 module.exports = {
     getScoreboard,
     setScoreboard,
+    initializePlayer,
     increasePlayerScore,
+    scoreboardFixture,
 };
