@@ -35,7 +35,7 @@ const Scoreboard = (props) => {
 
     return (
         <div className={"scoreboard"}>
-            <button>New Match</button>
+            <button onClick={props.onClickNewMatch}>New Match</button>
             <Searchbar onChange={setQuery} />
             <div className={"scoreboard__list"}>
                 {props.scores
@@ -50,6 +50,7 @@ const Scoreboard = (props) => {
 
 Scoreboard.propTypes = {
     scores: PropTypes.array.isRequired,
+    onClickNewMatch: PropTypes.func.isRequired,
 };
 
 export default Scoreboard;

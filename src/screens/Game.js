@@ -6,6 +6,7 @@ import Modal from "../components/funcComponents/Modal";
 import PropTypes from "prop-types";
 import Scoreboard from "../components/funcComponents/Scoreboard";
 import Select from "../components/classComponents/Select.js";
+import fakeAPI from "../services/Game/scoreboard.api.fake";
 import morracinese from "../utils/morracinese";
 import versus from "../assets/img/versus.gif";
 
@@ -14,49 +15,47 @@ class Game extends Component {
         super(props);
 
         this.moves = morracinese.getDefaultMoves();
+        this.isScoreboardUpdated = false;
 
         this.state = {
-            move: this.moves[0],
+            yourMove: this.moves[0],
             enemyMove: this.moves[3],
             round: 0,
-            result: "",
+            result: "YOU WON",
             yourWins: 0,
             enemyWins: 0,
             isEnd: false,
-            showScoreboard: false,
+            showScoreboard: true,
             scoreboard: [],
         };
     }
 
-    updateScoreboard = (scoreboard_) => {
-        const updatePlayer = (p) => {
-            if (p.playerName === this.props.playerName) {
-                return {
-                    ...p,
-                    victories: p.victories + 1,
-                };
-            }
-            return p;
-        };
+    componentDidMount() {
+        this.setState({ scoreboard: fakeAPI.getScoreboard() });
+    }
 
-        scoreboard_ = scoreboard_.map(updatePlayer);
-
-        localStorage.setItem("scoreboard", JSON.stringify(scoreboard_));
-
-        return scoreboard_;
+    onClickNewMatch = () => {
+        this.isScoreboardUpdated = false;
+        this.setState({
+            showScoreboard: false,
+        });
     };
 
     endMatch = () => {
         let timeOutState = {
+            yourWins: 0,
+            enemyWins: 0,
+            round: 0,
             showScoreboard: true,
             isEnd: false,
-            scoreboard: JSON.parse(localStorage.getItem("scoreboard")),
+            scoreboard: fakeAPI.getScoreboard(),
         };
 
-        if (this.state.yourWins > 2) {
-            timeOutState.scoreboard = this.updateScoreboard(
-                timeOutState.scoreboard
+        if (this.state.yourWins > 2 && this.isScoreboardUpdated === false) {
+            timeOutState.scoreboard = fakeAPI.increasePlayerScore(
+                this.props.playerName
             );
+            this.isScoreboardUpdated = true;
         }
 
         setTimeout(() => {
@@ -82,9 +81,9 @@ class Game extends Component {
         }
 
         if (newState.yourWins > 2) {
-            newState = { ...newState, result: "YOU WIN", isEnd: true };
+            newState = { ...newState, result: "YOU WON", isEnd: true };
         } else if (newState.enemyWins > 2) {
-            newState = { ...newState, result: "ENEMY WINS", isEnd: true };
+            newState = { ...newState, result: "KO", isEnd: true };
         }
 
         this.setState(newState);
@@ -94,11 +93,19 @@ class Game extends Component {
         return (
             <div className="game">
                 <div className="game-bg"></div>
+                {/* Game content */}
                 <div className="game__content">
                     <h1 className="title">
                         Rock Scissors Paper
                         <br />&<br /> Lizard Spock
                     </h1>
+                    {this.state.showScoreboard &&
+                        this.state.scoreboard.length > 0 && (
+                            <Scoreboard
+                                scores={this.state.scoreboard}
+                                onClickNewMatch={this.onClickNewMatch}
+                            />
+                        )}
                     {this.state.showScoreboard === false && (
                         <div className="game__content__match">
                             <h2>Round: {this.state.round}</h2>
@@ -132,24 +139,21 @@ class Game extends Component {
                                 </p>
 
                                 <Select
-                                    move={this.state.move}
+                                    move={this.state.yourMove}
                                     moves={this.moves}
                                     onClickChoose={this.onClickChoose}
                                 />
                             </div>
                         </div>
                     )}
-
                     {this.state.isEnd && (
-                        <Modal>
+                        <Modal className="game__modal-result">
                             {this.endMatch()}
+                            <h1>{this.state.result}</h1>
+                            <h1>{this.state.result}</h1>
                             <h1>{this.state.result}</h1>
                         </Modal>
                     )}
-                    {this.state.showScoreboard &&
-                        this.state.scoreboard.length > 0 && (
-                            <Scoreboard scores={this.state.scoreboard} />
-                        )}
                 </div>
             </div>
         );

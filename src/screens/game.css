@@ -70,6 +70,65 @@ for explanations */
 .select-wrapped--enemy {
     align-items: flex-start;
 }
+
 .select-wrapped--player {
     align-items: flex-end;
+}
+
+.game__modal-result {
+    color: black;
+    height: 60vh;
+
+    display: grid;
+    grid-template-columns: 1fr;
+
+    font-size: 5px;
+    text-align: center;
+    transform: translateY(80px);
+    width: 80vw;
+    animation-name: result-message;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
+
+.game__modal-result h1 {
+    grid-row-start: 1;
+    grid-column-start: 1;
+}
+
+.game__modal-result h1:nth-child(1) {
+    color: rgb(97, 97, 97);
+    text-shadow: -1px -1px 12px black;
+    transform: translate3d(0);
+}
+.game__modal-result h1:nth-child(2) {
+    color: rgb(49, 49, 49);
+    text-shadow: -3px -3px 12px black, 3px 3px 12px black;
+    transform: translate3d(-4px, -4px, 14px);
+}
+.game__modal-result h1:nth-child(3) {
+    color: rgb(0, 0, 0);
+    text-shadow: 2px 2px 15px black;
+    transform: translate3d(-8px, -8px, 18px);
+}
+
+@keyframes result-message {
+    0% {
+        font-size: 5px;
+        transform: translateY(80px);
+    }
+    50% {
+        font-size: 100px;
+        transform: translateY(-30px) rotate3d(1, 1, 1, 180deg);
+    }
+    75% {
+        font-size: 55px;
+        transform: translateY(10px) rotate3d(0, 1, 0, 270deg);
+    }
+    100% {
+        font-size: 60px;
+        transform: translateY(0) rotate3d(1, 1, 1, 360deg);
+    }
 }
