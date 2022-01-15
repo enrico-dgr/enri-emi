@@ -2,13 +2,15 @@ import "./game.css";
 
 import { Component } from "react";
 //Components
-import Modal from "../components/funcComponents/Modal";
+import Modal from "../../components/funcComponents/Modal";
 import PropTypes from "prop-types";
-import Scoreboard from "../components/funcComponents/Scoreboard";
-import Select from "../components/classComponents/Select.js";
-import fakeAPI from "../services/Game/scoreboard.api.fake";
-import morracinese from "../utils/morracinese";
-import versus from "../assets/img/versus.gif";
+import Scoreboard from "../../components/funcComponents/Scoreboard";
+import ScoreboardTransition from "./ScoreboardTransition";
+import Select from "../../components/classComponents/Select";
+import Transition from "../../components/classComponents/Transition";
+import fakeAPI from "../../services/Game/scoreboard.api.fake";
+import morracinese from "../../utils/morracinese";
+import versus from "../../assets/img/versus.gif";
 
 class Game extends Component {
     constructor(props) {
@@ -28,43 +30,39 @@ class Game extends Component {
             isEnd: false,
             showScoreboard: true,
             scoreboard: this.props.scoreboard,
-            matchmakingTransition: false,
+            scoreboardTransition: false,
+            matchmakingTransitionOn: false,
             matchmakingTransitionClass: "",
         };
     }
 
-    matchmakingTransitionDisable = () => {
+    onExitMatchmakingTransition = () => {
+        this.setState({
+            showScoreboard: false,
+        });
         setTimeout(() => {
             this.setState({
-                matchmakingTransition: false,
+                matchmakingTransitionOn: false,
             });
         }, 5000);
     };
 
-    matchmakingTransitionExit = () => {
+    onExitScoreboardTransition = () => {
+        this.setState({
+            showScoreboard: true,
+        });
         setTimeout(() => {
             this.setState({
-                matchmakingTransitionClass:
-                    "matchmaking-transition-screen--exit",
-                showScoreboard: false,
+                scoreboardTransition: false,
             });
-            this.matchmakingTransitionDisable();
-        }, 5000);
+        }, 1000);
     };
 
     onClickNewMatch = () => {
         this.isScoreboardUpdated = false;
         this.setState({
-            matchmakingTransition: true,
+            matchmakingTransitionOn: true,
         });
-
-        setTimeout(() => {
-            this.setState({
-                matchmakingTransitionClass:
-                    "matchmaking-transition-screen--enter",
-            });
-            this.matchmakingTransitionExit();
-        }, 10);
     };
 
     endMatch = () => {
@@ -72,7 +70,7 @@ class Game extends Component {
             yourWins: 0,
             enemyWins: 0,
             round: 0,
-            showScoreboard: true,
+            scoreboardTransition: true,
             isEnd: false,
             scoreboard: fakeAPI.getScoreboard(),
         };
@@ -86,7 +84,7 @@ class Game extends Component {
 
         setTimeout(() => {
             this.setState(timeOutState);
-        }, 3000);
+        }, 6000);
     };
 
     onClickChoose = (move) => {
@@ -119,13 +117,21 @@ class Game extends Component {
         return (
             <div className="game">
                 <div className="game-bg"></div>
-                {this.state.matchmakingTransition && (
-                    <div
-                        className={`matchmaking-transition-screen ${this.state.matchmakingTransitionClass}`}
-                    >
-                        <div className="loader-dots">Looking for a player</div>
-                    </div>
-                )}
+                <Transition
+                    defaultClass={"matchmaking-transition-screen"}
+                    enterClass={"matchmaking-transition-screen--enter"}
+                    exitClass={"matchmaking-transition-screen--exit"}
+                    timeoutBeforeEnter={100}
+                    timeoutBeforeExit={5000}
+                    transitionOn={this.state.matchmakingTransitionOn}
+                    onExit={this.onExitMatchmakingTransition}
+                >
+                    <div className="loader-dots">Looking for a player</div>
+                </Transition>
+                <ScoreboardTransition
+                    transitionOn={this.state.scoreboardTransition}
+                    onExit={this.onExitScoreboardTransition}
+                />
                 {/* Game content */}
                 <div className="game__content">
                     <h1 className="title">
@@ -136,6 +142,8 @@ class Game extends Component {
                         <Scoreboard
                             scores={this.state.scoreboard}
                             onClickNewMatch={this.onClickNewMatch}
+                            onClickLogout={this.props.onClickLogout}
+                            playerName={this.props.playerName}
                         />
                     )}
                     {this.state.showScoreboard === false && (
@@ -176,7 +184,7 @@ class Game extends Component {
                                     move={this.state.yourMove}
                                     moves={this.moves}
                                     imgs={this.movesImgs}
-                                    onClickChoose={this.onClickChoose}
+                                    onClickChoose={this.props.onClickChoose}
                                 />
                             </div>
                         </div>
@@ -197,6 +205,7 @@ class Game extends Component {
 
 Game.propTypes = {
     playerName: PropTypes.string.isRequired,
+    onClickLogout: PropTypes.func.isRequired,
 };
 
 export default Game;
