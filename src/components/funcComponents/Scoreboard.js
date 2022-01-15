@@ -35,7 +35,11 @@ const Scoreboard = (props) => {
 
     return (
         <div className={"scoreboard"}>
-            <button onClick={props.onClickNewMatch}>New Match</button>
+            <p>Player: {props.playerName}</p>
+            <div className={"scoreboard__buttons"}>
+                <button onClick={props.onClickNewMatch}>New Match</button>
+                <button onClick={props.onClickLogout}>Logout</button>
+            </div>
             <Searchbar onChange={setQuery} />
             <div className={"scoreboard__list"}>
                 {props.scores
@@ -49,8 +53,10 @@ const Scoreboard = (props) => {
 };
 
 Scoreboard.propTypes = {
-    scores: PropTypes.array.isRequired,
+    onClickLogout: PropTypes.func.isRequired,
     onClickNewMatch: PropTypes.func.isRequired,
+    playerName: PropTypes.string.isRequired,
+    scores: PropTypes.array.isRequired,
 };
 
 export default Scoreboard;

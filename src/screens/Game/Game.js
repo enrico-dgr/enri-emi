@@ -84,7 +84,7 @@ class Game extends Component {
 
         setTimeout(() => {
             this.setState(timeOutState);
-        }, 3000);
+        }, 6000);
     };
 
     onClickChoose = (move) => {
@@ -142,6 +142,8 @@ class Game extends Component {
                         <Scoreboard
                             scores={this.state.scoreboard}
                             onClickNewMatch={this.onClickNewMatch}
+                            onClickLogout={this.props.onClickLogout}
+                            playerName={this.props.playerName}
                         />
                     )}
                     {this.state.showScoreboard === false && (
@@ -182,7 +184,7 @@ class Game extends Component {
                                     move={this.state.yourMove}
                                     moves={this.moves}
                                     imgs={this.movesImgs}
-                                    onClickChoose={this.onClickChoose}
+                                    onClickChoose={this.props.onClickChoose}
                                 />
                             </div>
                         </div>
@@ -203,6 +205,7 @@ class Game extends Component {
 
 Game.propTypes = {
     playerName: PropTypes.string.isRequired,
+    onClickLogout: PropTypes.func.isRequired,
 };
 
 export default Game;

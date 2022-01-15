@@ -24,6 +24,25 @@ class App extends Component {
         };
     }
 
+    componentDidMount() {
+        let newState = {
+            scoreboard: fakeAPI.scoreboardFixture(),
+        };
+
+        const playerName = sessionStorage.getItem("playerName");
+        if (typeof playerName === "string") {
+            newState = {
+                ...newState,
+                playerName,
+                gameTransition: true,
+            };
+        }
+
+        setTimeout(() => {
+            this.setState(newState);
+        }, 1500);
+    }
+
     onExitTransition = () => {
         setTimeout(() => {
             this.setState({
@@ -31,12 +50,6 @@ class App extends Component {
             });
         }, 750);
     };
-
-    componentDidMount() {
-        this.setState({
-            scoreboard: fakeAPI.scoreboardFixture(),
-        });
-    }
 
     onExitGameTransition = () => {
         this.setState({
@@ -50,12 +63,19 @@ class App extends Component {
     onClickRegistration = (playerName) => {
         // if player exists, it does nothing
         const scoreboard = fakeAPI.initializePlayer(playerName);
-
+        sessionStorage.setItem("playerName", playerName);
         this.setState({
             gameTransition: true,
             playerName,
             scoreboard,
         });
+    };
+
+    onClickLogout = () => {
+        setInterval(() => {
+            sessionStorage.clear();
+            document.location.reload();
+        }, 500);
     };
 
     render() {
@@ -84,6 +104,7 @@ class App extends Component {
                     <Game
                         playerName={this.state.playerName}
                         scoreboard={this.state.scoreboard}
+                        onClickLogout={this.onClickLogout}
                     />
                 )}
             </div>
