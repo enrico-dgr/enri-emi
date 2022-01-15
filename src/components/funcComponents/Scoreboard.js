@@ -35,7 +35,7 @@ const Scoreboard = (props) => {
 
     return (
         <div className={"scoreboard"}>
-            <p>Player: {props.playerName}</p>
+            <h2>Player: {props.playerName}</h2>
             <div className={"scoreboard__buttons"}>
                 <button onClick={props.onClickNewMatch}>New Match</button>
                 <button onClick={props.onClickLogout}>Logout</button>
