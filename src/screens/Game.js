@@ -109,7 +109,7 @@ class Game extends Component {
         if (newState.yourWins > 2) {
             newState = { ...newState, result: "YOU WON", isEnd: true };
         } else if (newState.enemyWins > 2) {
-            newState = { ...newState, result: "KO", isEnd: true };
+            newState = { ...newState, result: "YOU LOSE", isEnd: true };
         }
 
         this.setState(newState);
@@ -182,7 +182,7 @@ class Game extends Component {
                         </div>
                     )}
                     {this.state.isEnd && (
-                        <Modal className="game__modal-result">
+                        <Modal className={"game__modal-result"}>
                             {this.endMatch()}
                             <h1>{this.state.result}</h1>
                             <h1>{this.state.result}</h1>

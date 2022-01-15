@@ -44,26 +44,24 @@ class Select extends Component {
                     className={"select__button"}
                     onClick={this.onClickShowModal}
                 >
-                    <p>{this.props.move}</p>
-                    <img
-                        src={this.getImage()}
-                        alt={this.props.move}
-                        height="100px"
-                        width="100px"
-                    />
+                    <div className={"select-button-content"}>
+                        <img
+                            src={this.getImage()}
+                            alt={this.props.move}
+                            height="100%"
+                            width="90%"
+                        />
+                        <h3 className={"choiche"}>{this.props.move}</h3>
+                    </div>
                 </div>
-                {this.state.modalOn && (
-                    <Modal
-                        style={{
-                            height: "35vh",
-                            overflowY: "scroll",
-                            border: "1px solid black",
-                        }}
-                    >
-                        {this.props.moves.map(this.Button)}
-                    </Modal>
-                )}
-            </div>
+                {
+                    this.state.modalOn && (
+                        <Modal className={"select-modal"}>
+                            {this.props.moves.map(this.Button)}
+                        </Modal>
+                    )
+                }
+            </div >
         );
     }
 
@@ -77,10 +75,10 @@ class Select extends Component {
                 <img
                     src={this.props.imgs[i]}
                     alt={move}
-                    width="100px"
-                    height="100px"
+                    width="100%"
+                    height="90%"
                 />
-                <p className="mov">{move}</p>
+                <h3 className={"choiche"}>{move}</h3>
             </div>
         );
     };

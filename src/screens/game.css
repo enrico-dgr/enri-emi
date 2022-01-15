@@ -164,7 +164,7 @@ for explanations */
     font-size: 15px;
     text-shadow: 1px 2px 3px #000000;
     letter-spacing: 0px;
-    line-height: 1.2;
+    line-height: 1.0;
     text-transform: uppercase;
     text-align: center;
 }
@@ -172,16 +172,14 @@ for explanations */
 .game__modal-result {
     color: black;
     height: 60vh;
-
     display: grid;
     grid-template-columns: 1fr;
-
     font-size: 5px;
     text-align: center;
     transform: translateY(80px);
     width: 80vw;
     animation-name: result-message;
-    animation-duration: 1s;
+    animation-duration: 2s;
     animation-fill-mode: forwards;
     animation-direction: normal;
     animation-timing-function: linear;
@@ -190,21 +188,22 @@ for explanations */
 .game__modal-result h1 {
     grid-row-start: 1;
     grid-column-start: 1;
+    text-shadow: 10px 10px 20px rgba(40, 0, 44, 0.705);
 }
 
 .game__modal-result h1:nth-child(1) {
-    color: rgb(97, 97, 97);
-    text-shadow: -1px -1px 12px black;
+    color: #947100;
+    /*text-shadow: -1px -1px 12px black;*/
     transform: translate3d(0);
 }
 .game__modal-result h1:nth-child(2) {
-    color: rgb(49, 49, 49);
-    text-shadow: -3px -3px 12px black, 3px 3px 12px black;
+    color: #b98e01;
+    /*text-shadow: -3px -3px 12px black, 3px 3px 12px black;*/
     transform: translate3d(-4px, -4px, 14px);
 }
 .game__modal-result h1:nth-child(3) {
-    color: rgb(0, 0, 0);
-    text-shadow: 2px 2px 15px black;
+    color: #f5bc00;
+    /*text-shadow: 2px 2px 15px black;*/
     transform: translate3d(-8px, -8px, 18px);
 }
 

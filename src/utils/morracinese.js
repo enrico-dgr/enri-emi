@@ -5,14 +5,14 @@ import scissors from "../assets/img/scissors.png";
 import spock from "../assets/img/spock.png";
 
 const MOVES = ["scissors", "paper", "rock", "lizard", "spock"];
-const MOVES_IMGS = [rock, paper, lizard, spock, scissors];
+const MOVES_IMGS = [scissors, paper, rock, lizard, spock];
 
 const getDefaultMoves = () => MOVES;
 
 const getDefaultMovesImgs = () => MOVES_IMGS;
 
 const getRandomMove = () => {
-    let cpu = Math.floor(Math.random() * 4);
+    let cpu = Math.round(Math.random() * 4);
     return MOVES[cpu];
 };
 

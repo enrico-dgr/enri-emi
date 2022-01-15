@@ -6,18 +6,40 @@
     width: 120px;
     height: 120px;
     background-color: #4c002e;
-    border: 7px double #d1470a;
+    border: 7px double #f5bc00;
+    box-shadow: 5px 5px 20px rgba(40, 0, 44, 0.856);
 }
 
 .select__modal__button {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: 120px;
     height: 120px;
     background-color: #4c002e;
-    border: 7px double #d1470a;
+    border: 7px double #f5bc00;
 }
 
-.move {
+.select-modal{
+    height: 35vh;
+    overflow-y: scroll;
+    border-top: 2px solid #f5bc00;
+    border-bottom: 2px solid #f5bc00;
+    box-shadow: 20px 20px 20px rgba(40, 0, 44, 0.705);
+}
+
+.select-button-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.choiche{
+    margin: 0;
+    margin-bottom: 10px;
+    font-family: "Inter-SemiBold", "Inter", sans-serif;
+    color: #f5bc00;
+    text-transform: uppercase;
 }
