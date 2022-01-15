@@ -84,16 +84,16 @@ class Game extends Component {
 
         setTimeout(() => {
             this.setState(timeOutState);
-        }, 6000);
+        }, 5000);
     };
 
-    onClickChoose = (move) => {
+    onClickChoose = (yourMove) => {
         const enemyMove = morracinese.getRandomMove();
-        const whoWon = morracinese.evaluateRound(move, enemyMove);
+        const whoWon = morracinese.evaluateRound(yourMove, enemyMove);
 
         let newState = {
             ...this.state,
-            move,
+            yourMove,
             enemyMove,
             round: this.state.round + 1,
         };
@@ -184,7 +184,7 @@ class Game extends Component {
                                     move={this.state.yourMove}
                                     moves={this.moves}
                                     imgs={this.movesImgs}
-                                    onClickChoose={this.props.onClickChoose}
+                                    onClickChoose={this.onClickChoose}
                                 />
                             </div>
                         </div>

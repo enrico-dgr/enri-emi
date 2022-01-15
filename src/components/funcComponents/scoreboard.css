@@ -1,6 +1,6 @@
 .scoreboard {
     background: transparent;
-    box-shadow: 0 2px 0 #ac4444;
+
     border-radius: 6px;
     display: flex;
     flex-direction: column;
@@ -11,7 +11,21 @@
     overflow: hidden;
 }
 
+.scoreboard h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-family: "Inter-SemiBold", "Inter", sans-serif;
+    color: #f5bc00;
+    font-size: 25px;
+    text-shadow: 1px 2px 3px #000000;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+}
+
 .scoreboard__list {
+    box-shadow: 0 2px 0 #ac4444;
     overflow-y: auto;
     width: 100%;
 }
@@ -22,6 +36,7 @@
 }
 
 .scoreboard__buttons {
+    box-shadow: 0 2px 0 #ac4444;
     background-color: #ac4444;
     display: flex;
     align-items: center;
