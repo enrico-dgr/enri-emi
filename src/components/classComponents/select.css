@@ -21,12 +21,16 @@
     border: 7px double #f5bc00;
 }
 
-.select-modal{
+.select-modal {
     height: 35vh;
     overflow-y: scroll;
     border-top: 2px solid #f5bc00;
     border-bottom: 2px solid #f5bc00;
     box-shadow: 20px 20px 20px rgba(40, 0, 44, 0.705);
+}
+
+.select-modal::-webkit-scrollbar {
+    display: none;
 }
 
 .select-button-content {
@@ -36,7 +40,7 @@
     flex-direction: column;
 }
 
-.choiche{
+.choiche {
     margin: 0;
     margin-bottom: 10px;
     font-family: "Inter-SemiBold", "Inter", sans-serif;

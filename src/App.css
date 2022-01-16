@@ -53,3 +53,36 @@ body {
     pointer-events: none;
     transition: opacity 0.3s;
 }
+
+@media (min-width: 641px) {
+    /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+    html {
+        transform-origin: left top;
+        transform: rotate(-90deg);
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+    .project-enri-emi {
+        width: 100vh;
+        height: 100vw;
+    }
+}
+@media (min-width: 961px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */
+    html {
+        transform-origin: left top;
+        transform: rotate(0);
+        position: initial;
+    }
+    .project-enri-emi {
+        width: 100vw;
+        height: 100vh;
+    }
+}
+@media (min-width: 1025px) {
+    /* big landscape tablets, laptops, and desktops */
+}
+@media (min-width: 1281px) {
+    /* hi-res laptops and desktops */
+}

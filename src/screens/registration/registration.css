@@ -34,14 +34,6 @@
     border: 0;
 }
 
-@media (orientation: landscape) {
-    .registration-bg {
-        transform: rotate(0) translateY(0);
-        height: 100vh;
-        width: 100vw;
-    }
-}
-
 .content {
     position: relative;
     width: 100%;
@@ -55,7 +47,7 @@
 }
 
 .title {
-    margin: 10% 0 0 0;
+    margin: 30px 0 0 0;
     white-space: pre;
     text-shadow: 1px 2px 3px #000000;
     font-weight: 600;
@@ -68,13 +60,13 @@
     text-align: center;
 }
 
-.rules-content{
+.rules-content {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.rules{
+.rules {
     margin: 5% 0 5% 0;
     white-space: pre;
     text-shadow: 1px 2px 3px #000000;
@@ -88,11 +80,10 @@
     text-align: center;
 }
 
-
 .enter-game {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -182,3 +173,70 @@
     outline: none;
     transform: translateY(0);
 }
+
+@media (min-width: 320px) {
+    /* smartphones, iPhone, portrait 480x320 phones */
+}
+@media (min-width: 481px) {
+    /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+}
+@media (min-width: 641px) {
+    /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+    /* .registration-bg {
+        transform: rotate(0) translateY(0);
+        height: 100vh;
+        width: 100vw;
+    } */
+    .registration-bg {
+        height: 100vw;
+        width: 100vh;
+    }
+}
+@media (min-width: 961px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */
+    .registration-bg {
+        transform: rotate(0) translateY(0);
+        height: 100vh;
+        width: 100vw;
+    }
+    .title {
+        font-size: 35px;
+        margin: 30px 0 0 0;
+    }
+    .rules {
+        font-size: 26px;
+    }
+    .rules-content img {
+        width: 450px;
+        height: 375px;
+    }
+}
+@media (min-width: 1025px) {
+    /* big landscape tablets, laptops, and desktops */
+    .registration-bg {
+        transform: rotate(0) translateY(0);
+        height: 100vh;
+        width: 100vw;
+    }
+}
+@media (min-width: 1281px) {
+    /* hi-res laptops and desktops */
+    .registration-bg {
+        transform: rotate(0) translateY(0);
+        height: 100vh;
+        width: 100vw;
+    }
+}
+
+/* @media (orientation: landscape) {
+    .registration-bg {
+        transform: rotate(0) translateY(0);
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .content {
+        transform-origin: left top;
+        transform: rotate(-90deg);
+    }
+} */

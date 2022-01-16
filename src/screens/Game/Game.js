@@ -187,7 +187,9 @@ class Game extends Component {
                                     imgs={this.movesImgs}
                                     onClickChoose={this.onClickChoose}
                                 />
-                                <p className="player-name">{this.props.playerName}</p>
+                                <p className="player-name">
+                                    {this.props.playerName}
+                                </p>
                             </div>
                         </div>
                     )}

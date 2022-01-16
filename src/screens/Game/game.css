@@ -2,8 +2,7 @@
     height: 100%;
     width: 100%;
     position: relative;
-    overflow-y: visible;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 /* see registration.css => .registration-bg 
@@ -103,24 +102,14 @@ for explanations */
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
 }
 
-.title {
-    margin: 10% 0 0 0;
-    white-space: pre;
-    text-shadow: 1px 2px 3px #000000;
-    font-weight: 600;
-    font-family: "Inter-SemiBold", "Inter", sans-serif;
-    color: #f5bc00;
-    font-size: 28px;
-    letter-spacing: 0px;
-    line-height: 1.2;
-    text-transform: uppercase;
-    text-align: center;
+.game__content .title {
+    margin: 5px;
 }
 
 .game__content__match {
-    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -157,7 +146,7 @@ for explanations */
     text-align: center;
 }
 
-.player-name{
+.player-name {
     margin-top: 10px;
     margin-bottom: 10px;
     font-family: "Inter-SemiBold", "Inter", sans-serif;
@@ -180,7 +169,7 @@ for explanations */
     font-size: 20px;
     text-shadow: 1px 2px 3px #000000;
     letter-spacing: 0px;
-    line-height: 1.0;
+    line-height: 1;
     text-transform: uppercase;
     text-align: center;
 }
@@ -239,5 +228,42 @@ for explanations */
     100% {
         font-size: 60px;
         transform: translateY(0) rotate3d(1, 1, 1, 360deg);
+    }
+}
+
+@media (max-width: 320px) {
+    /* iPhone 5/SE */
+    .game__content .title {
+        font-size: 25px;
+    }
+}
+
+@media (min-width: 641px) {
+    .game-bg {
+        height: 100vw;
+        width: 100vh;
+    }
+    .matchmaking-transition-screen {
+        background-repeat: repeat;
+        background-size: 300px 200px;
+        background-position: 50% 38%;
+    }
+    .matchmaking-transition-screen .loader-dots {
+        left: 280px;
+    }
+}
+
+@media (max-height: 602px) {
+    .game__content {
+        overflow-y: scroll;
+        justify-content: flex-start;
+    }
+}
+
+@media (min-width: 961px) {
+    .game-bg {
+        transform: rotate(0) translateY(0);
+        height: 100vh;
+        width: 100vw;
     }
 }
