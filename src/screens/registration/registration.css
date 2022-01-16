@@ -1,6 +1,6 @@
 .registration {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     position: relative;
     overflow: hidden;
 }
@@ -174,86 +174,71 @@
     transform: translateY(0);
 }
 
-@media (min-width: 280px) {
-
-}
-
-@media (min-width: 320px) {
-    /* smartphones, iPhone, portrait 480x320 phones */
-
-}
-@media (min-width: 641px) {
-    /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
-     .registration-bg {
-        transform: rotate(0) translateY(0);
+/* Keep portrait-layout for landscape in smartphones and rectangular-shaped tablets */
+@media only screen and (min-width: 530px) and (min-height: 200px) and (max-height: 500px) and (orientation: landscape) {
+    .registration {
         height: 100vw;
+        transform-origin: left top;
+        transform: rotate(-90deg) translateX(-100%);
         width: 100vh;
-    } 
-    .content {
-        transform: rotate(90deg) translateY(-15%);
     }
-
-    .title {
-     font-size: 50px;
-        margin-bottom: 75px;
+    .registration-bg {
+        height: 100vh;
+        width: 100vw;
     }
-
-    .rules-content{
-        margin-top: 75px;
-    }
-
-    .rules {
-        font-size: 40px;
-        margin-bottom: 35px;
-    }
-    .rules-content img{
-        width: 500px;
-        height: 500px;    
-    }
-    
-    .enter-game input {
-        width: 250px;
-        height: 25px;
-    }
-    
-    .enter-game > button {
-        width: 120px;
-        height: 50px;
-    }
-
 }
-@media (min-width: 961px) {
-    /* tablet, landscape iPad, lo-res laptops ands desktops */
+
+@media only screen and (min-width: 515px) and (min-height: 500px) {
     .registration-bg {
         transform: rotate(0) translateY(0);
         height: 100vh;
         width: 100vw;
     }
+}
+
+@media only screen and (min-width: 375px) and (min-height: 600px) {
     .title {
-        font-size: 35px;
-        margin: 30px 0 0 0;
+        font-size: 30px;
     }
     .rules {
-        font-size: 26px;
+        font-size: 23px;
     }
     .rules-content img {
-        width: 450px;
-        height: 375px;
+        width: 320px;
+        height: 295px;
+    }
+    .enter-game > input {
+        font-size: 21px;
+        padding: 12px 33px;
+    }
+    .enter-game > button {
+        border-radius: 44px;
+        height: 40px;
+        font-size: 18px;
+        padding: 20px 36px;
+        width: 120px;
     }
 }
-@media (min-width: 1025px) {
-    /* big landscape tablets, laptops, and desktops */
-    .registration-bg {
-        transform: rotate(0) translateY(0);
-        height: 100vh;
-        width: 100vw;
+
+@media only screen and (min-height: 768px) {
+    .title {
+        font-size: 37px;
     }
-}
-@media (min-width: 1281px) {
-    /* hi-res laptops and desktops */
-    .registration-bg {
-        transform: rotate(0) translateY(0);
-        height: 100vh;
-        width: 100vw;
+    .rules {
+        font-size: 29px;
+    }
+    .rules-content img {
+        width: 360px;
+        height: 335px;
+    }
+    .enter-game > input {
+        font-size: 27px;
+    }
+    .enter-game > button {
+        border-radius: 44px;
+        height: 54px;
+        font-size: 26px;
+        padding: 22px 44px;
+        width: 160px;
     }
 }

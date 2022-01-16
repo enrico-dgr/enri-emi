@@ -1,24 +1,21 @@
 .select__button {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    width: 120px;
-    height: 120px;
     background-color: #4c002e;
     border: 7px double #f5bc00;
-    box-shadow: 5px 5px 20px rgba(40, 0, 44, 0.856);
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    justify-content: center;
+    width: 120px;
 }
 
-.select__modal__button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 120px;
-    height: 120px;
-    background-color: #4c002e;
-    border: 7px double #f5bc00;
+.select__button img {
+    height: min-content;
+    max-height: 100px;
+}
+
+.select .select__button {
+    box-shadow: 5px 5px 20px rgba(40, 0, 44, 0.856);
 }
 
 .select-modal {
@@ -33,16 +30,9 @@
     display: none;
 }
 
-.select-button-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.choiche {
+.choice {
     margin: 0;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     font-family: "Inter-SemiBold", "Inter", sans-serif;
     color: #f5bc00;
     text-transform: uppercase;

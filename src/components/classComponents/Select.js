@@ -39,29 +39,25 @@ class Select extends Component {
 
     render() {
         return (
-            <div>
+            <div className="select">
                 <div
                     className={"select__button"}
                     onClick={this.onClickShowModal}
                 >
-                    <div className={"select-button-content"}>
-                        <img
-                            src={this.getImage()}
-                            alt={this.props.move}
-                            height="95%"
-                            width="90%"
-                        />
-                        <h3 className={"choiche"}>{this.props.move}</h3>
-                    </div>
+                    <img
+                        src={this.getImage()}
+                        alt={this.props.move}
+                        height="95%"
+                        width="90%"
+                    />
+                    <h3 className={"choice"}>{this.props.move}</h3>
                 </div>
-                {
-                    this.state.modalOn && (
-                        <Modal className={"select-modal"}>
-                            {this.props.moves.map(this.Button)}
-                        </Modal>
-                    )
-                }
-            </div >
+                {this.state.modalOn && (
+                    <Modal className={"select-modal"}>
+                        {this.props.moves.map(this.Button)}
+                    </Modal>
+                )}
+            </div>
         );
     }
 
@@ -69,7 +65,7 @@ class Select extends Component {
         return (
             <div
                 key={i + move}
-                className={`select__modal__button`}
+                className={`select__button`}
                 onClick={this.onClickChoose(move)}
             >
                 <img
@@ -78,7 +74,7 @@ class Select extends Component {
                     width="90%"
                     height="95%"
                 />
-                <h3 className={"choiche"}>{move}</h3>
+                <h3 className={"choice"}>{move}</h3>
             </div>
         );
     };
