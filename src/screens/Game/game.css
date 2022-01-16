@@ -35,10 +35,10 @@ for explanations */
     background-position: 50% 30%;
 
     position: absolute;
-    top: -20vh;
-    left: -10vw;
-    height: 120vh;
-    width: 120vw;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
     opacity: 0;
     transition: opacity 1s;
     z-index: 3;
@@ -55,25 +55,21 @@ for explanations */
     transition: opacity 2s;
 }
 
-.matchmaking-transition-screen .loader-dots {
-    position: absolute;
-    bottom: 0;
-    left: 180px;
-}
-
 .loader-dots {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.329);
+    border: 1px solid #fff;
+    border-radius: 0.3em;
+    bottom: 10%;
+    display: block;
+    font: 300 1em/1.5 "Lato", sans-serif;
+    height: fit-content;
+    left: 10%;
+    letter-spacing: 1px;
     margin: 0;
     padding: 0.5em 2.2em 0.5em 1em;
-    border-radius: 0.3em;
-    color: #fff;
-    border: 1px solid #fff;
-    background: rgba(0, 0, 0, 0.329);
-    display: block;
-    transform: translateX(-50%) translateY(-50%);
-    font: 300 1em/1.5 "Lato", sans-serif;
-    letter-spacing: 1px;
+    position: absolute;
     width: fit-content;
-    height: fit-content;
 }
 
 .loader-dots:after {
@@ -280,8 +276,8 @@ for explanations */
         background-size: 270px 180px;
         background-position: 50% 38%;
     }
-    .matchmaking-transition-screen .loader-dots {
-        left: 280px;
+    .loader-dots {
+        /* left: 280px; */
     }
 }
 
