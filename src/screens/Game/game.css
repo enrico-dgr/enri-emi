@@ -275,6 +275,14 @@ for explanations */
         height: 100vh;
         width: 100vw;
     }
+    .matchmaking-transition-screen {
+        background-repeat: repeat;
+        background-size: 270px 180px;
+        background-position: 50% 38%;
+    }
+    .matchmaking-transition-screen .loader-dots {
+        left: 280px;
+    }
 }
 
 @media only screen and (max-width: 400px) {
