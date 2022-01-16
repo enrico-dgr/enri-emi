@@ -248,6 +248,25 @@ for explanations */
         height: 100vh;
         width: 100vw;
     }
+
+    .game .modal-container {
+        top: 0;
+        left: 0;
+        width: 100vh;
+        height: 100vw;
+    }
+
+    .matchmaking-transition-screen {
+        top: -20%;
+        left: -10%;
+        height: 120%;
+        width: 120%;
+    }
+
+    .game > .scoreboard-transition-screen {
+        height: 120%;
+        width: 120%;
+    }
 }
 
 @media only screen and (min-width: 515px) and (min-height: 500px) {

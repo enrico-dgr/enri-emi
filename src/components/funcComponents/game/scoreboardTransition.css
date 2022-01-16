@@ -1,0 +1,25 @@
+.scoreboard-transition-screen {
+    background-image: url("../../../assets/img/transition/rocket.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 3;
+}
+
+.scoreboard-transition-screen--enter {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.scoreboard-transition-screen--exit {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
