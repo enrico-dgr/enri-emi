@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import TransitionClass from "../../components/classComponents/Transition";
+import TransitionClass from "../../classComponents/Transition";
 
 const ScoreboardTransition = (props) => {
     return (

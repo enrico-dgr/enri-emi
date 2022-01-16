@@ -5,10 +5,10 @@ import { Component } from "react";
 import Modal from "../../components/funcComponents/Modal";
 import PropTypes from "prop-types";
 import Scoreboard from "../../components/funcComponents/Scoreboard";
-import ScoreboardTransition from "./ScoreboardTransition";
+import ScoreboardTransition from "../../components/funcComponents/game/ScoreboardTransition";
 import Select from "../../components/classComponents/Select";
 import Transition from "../../components/classComponents/Transition";
-import fakeAPI from "../../services/Game/scoreboard.api.fake";
+import fakeAPI from "../../services/game/scoreboard.api.fake";
 import morracinese from "../../utils/morracinese";
 import versus from "../../assets/img/versus.gif";
 
@@ -155,6 +155,7 @@ class Game extends Component {
                                     "select-wrapped select-wrapped--enemy"
                                 }
                             >
+                                <p className="player-name">Computer</p>
                                 <Select
                                     disable={true}
                                     move={this.state.enemyMove}
@@ -186,6 +187,7 @@ class Game extends Component {
                                     imgs={this.movesImgs}
                                     onClickChoose={this.onClickChoose}
                                 />
+                                <p className="player-name">{this.props.playerName}</p>
                             </div>
                         </div>
                     )}

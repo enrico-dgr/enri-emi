@@ -1,8 +1,8 @@
-import lizard from "../assets/img/lizard.png";
-import paper from "../assets/img/paper.png";
-import rock from "../assets/img/rock.png";
-import scissors from "../assets/img/scissors.png";
-import spock from "../assets/img/spock.png";
+import lizard from "../assets/img/choiches/lizard.png";
+import paper from "../assets/img/choiches/paper.png";
+import rock from "../assets/img/choiches/rock.png";
+import scissors from "../assets/img/choiches/scissors.png";
+import spock from "../assets/img/choiches/spock.png";
 
 const MOVES = ["scissors", "paper", "rock", "lizard", "spock"];
 const MOVES_IMGS = [scissors, paper, rock, lizard, spock];

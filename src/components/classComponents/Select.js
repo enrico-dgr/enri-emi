@@ -48,7 +48,7 @@ class Select extends Component {
                         <img
                             src={this.getImage()}
                             alt={this.props.move}
-                            height="100%"
+                            height="95%"
                             width="90%"
                         />
                         <h3 className={"choiche"}>{this.props.move}</h3>
@@ -76,7 +76,7 @@ class Select extends Component {
                     src={this.props.imgs[i]}
                     alt={move}
                     width="90%"
-                    height="100%"
+                    height="95%"
                 />
                 <h3 className={"choiche"}>{move}</h3>
             </div>

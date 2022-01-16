@@ -2,7 +2,7 @@ import "./registration.css";
 
 import { Component } from "react";
 import PropTypes from "prop-types";
-import rules from "../assets/img/rules.png";
+import rules from "../../assets/img/rules.png";
 
 //Components
 

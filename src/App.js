@@ -3,11 +3,11 @@ import "./App.css";
 import React, { Component } from "react";
 
 //Screens
-import Game from "./screens/Game/Game.js";
-import Registration from "./screens/Registration.js";
-import ScoreboardTransition from "./screens/Game/ScoreboardTransition";
+import Game from "./screens/game/Game.js";
+import Registration from "./screens/registration/Registration.js";
+import ScoreboardTransition from "./components/funcComponents/game/ScoreboardTransition";
 import Transition from "./components/classComponents/Transition";
-import fakeAPI from "./services/Game/scoreboard.api.fake";
+import fakeAPI from "./services/game/scoreboard.api.fake";
 
 class App extends Component {
     constructor(props) {
