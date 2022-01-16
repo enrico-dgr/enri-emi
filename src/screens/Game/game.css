@@ -35,10 +35,11 @@ for explanations */
     background-position: 50% 30%;
 
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
+    /* To show just two repetitions of the gif on mobile */
+    top: -20%;
+    left: -10%;
+    height: 120%;
+    width: 120%;
     opacity: 0;
     transition: opacity 1s;
     z-index: 3;
@@ -60,11 +61,11 @@ for explanations */
     background: rgba(0, 0, 0, 0.329);
     border: 1px solid #fff;
     border-radius: 0.3em;
-    bottom: 10%;
+    bottom: 5%;
     display: block;
     font: 300 1em/1.5 "Lato", sans-serif;
     height: fit-content;
-    left: 10%;
+    left: 20%;
     letter-spacing: 1px;
     margin: 0;
     padding: 0.5em 2.2em 0.5em 1em;
@@ -275,9 +276,6 @@ for explanations */
         background-repeat: repeat;
         background-size: 270px 180px;
         background-position: 50% 38%;
-    }
-    .loader-dots {
-        /* left: 280px; */
     }
 }
 
