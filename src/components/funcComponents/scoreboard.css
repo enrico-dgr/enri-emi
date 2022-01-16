@@ -1,6 +1,5 @@
 .scoreboard {
     background: transparent;
-
     border-radius: 6px;
     display: flex;
     flex-direction: column;
@@ -61,4 +60,8 @@
     cursor: pointer;
     outline: none;
     transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.scoreboard__buttons >button:hover{
+    background-color: #8a4040;
 }

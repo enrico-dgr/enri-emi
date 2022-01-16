@@ -245,7 +245,7 @@ for explanations */
     }
     .matchmaking-transition-screen {
         background-repeat: repeat;
-        background-size: 300px 200px;
+        background-size: 310px 180px;
         background-position: 50% 38%;
     }
     .matchmaking-transition-screen .loader-dots {
@@ -265,5 +265,10 @@ for explanations */
         transform: rotate(0) translateY(0);
         height: 100vh;
         width: 100vw;
+    }    
+    .game__modal-result {
+        height: 40vh;
+        transform: translateY(50px);
+        width: 40vw;
     }
 }

@@ -3,7 +3,7 @@
     background-color: rgba(0, 0, 0, 0.368);
     border-bottom: solid 2px #eeeeee;
     display: flex;
-    font-size: 1.2em;
+    font-size: 1.4em;
     letter-spacing: 2px;
     width: 100%;
 }
@@ -31,8 +31,8 @@
     font-weight: bold;
 }
 .player__score {
-    color: #fd00fd;
+    color: #ff1818;
     padding-right: 20px;
     font-weight: bold;
-    text-shadow: 1px 2px 3px #000000;
+    text-shadow: 1px 1px 2px #000000;
 }

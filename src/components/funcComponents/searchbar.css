@@ -26,4 +26,10 @@
 
 .searchbar input[type="text"]:focus {
     background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid #8a4040;
 }
+
+.searchbar input:hover{
+    background-color: #8a4040
+}
+

@@ -174,23 +174,53 @@
     transform: translateY(0);
 }
 
+@media (min-width: 280px) {
+
+}
+
 @media (min-width: 320px) {
     /* smartphones, iPhone, portrait 480x320 phones */
-}
-@media (min-width: 481px) {
-    /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+
 }
 @media (min-width: 641px) {
     /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
-    /* .registration-bg {
+     .registration-bg {
         transform: rotate(0) translateY(0);
-        height: 100vh;
-        width: 100vw;
-    } */
-    .registration-bg {
         height: 100vw;
         width: 100vh;
+    } 
+    .content {
+        transform: rotate(90deg) translateY(-15%);
     }
+
+    .title {
+     font-size: 50px;
+        margin-bottom: 75px;
+    }
+
+    .rules-content{
+        margin-top: 75px;
+    }
+
+    .rules {
+        font-size: 40px;
+        margin-bottom: 35px;
+    }
+    .rules-content img{
+        width: 500px;
+        height: 500px;    
+    }
+    
+    .enter-game input {
+        width: 250px;
+        height: 25px;
+    }
+    
+    .enter-game > button {
+        width: 120px;
+        height: 50px;
+    }
+
 }
 @media (min-width: 961px) {
     /* tablet, landscape iPad, lo-res laptops ands desktops */
@@ -227,16 +257,3 @@
         width: 100vw;
     }
 }
-
-/* @media (orientation: landscape) {
-    .registration-bg {
-        transform: rotate(0) translateY(0);
-        height: 100vh;
-        width: 100vw;
-    }
-
-    .content {
-        transform-origin: left top;
-        transform: rotate(-90deg);
-    }
-} */
