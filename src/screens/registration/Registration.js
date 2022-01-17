@@ -11,6 +11,7 @@ class Registration extends Component {
         super(props);
         this.state = {
             inputText: "",
+            errorMessage: "",
         };
     }
 
@@ -21,8 +22,19 @@ class Registration extends Component {
     };
 
     addLocalStorage = () => {
-        localStorage.setItem("playerName", this.state.inputText);
-        this.props.onClickRegistration(this.state.inputText);
+        let newState = {};
+
+        if (this.state.inputText === "") {
+            newState.errorMessage = "Insert a name";
+        } else {
+            localStorage.setItem("playerName", this.state.inputText);
+            this.props.onClickRegistration(this.state.inputText);
+        }
+
+        this.setState(newState);
+        setTimeout(() => {
+            this.setState({ errorMessage: "" });
+        }, 3000);
     };
 
     render() {
@@ -37,8 +49,15 @@ class Registration extends Component {
                     <div className="enter-game">
                         <input
                             type="text"
-                            placeholder="Player Name"
+                            placeholder={
+                                this.state.errorMessage === ""
+                                    ? "Player Name"
+                                    : this.state.errorMessage
+                            }
                             onChange={this.onChangeInput}
+                            className={
+                                this.state.errorMessage === "" ? "" : "bounce"
+                            }
                         />
                         <button onClick={this.addLocalStorage}>GO!</button>
                     </div>
