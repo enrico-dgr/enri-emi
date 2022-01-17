@@ -1,0 +1,110 @@
+.select-3d {
+    height: 120px;
+    position: relative;
+    width: 120px;
+
+    margin: 0 0 7px 0;
+
+    transform-style: preserve-3d;
+
+    box-shadow: 5px 5px 20px rgba(40, 0, 44, 0.856);
+    transition: transform 1s;
+}
+
+.select-3d__face {
+    height: 120px;
+    width: 120px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* initial left-front face */
+.select-3d__face:nth-of-type(2) {
+    transform-origin: right;
+    transform: translateX(-134px) translateZ(0) rotateY(-72deg);
+}
+
+/* initial right-front face */
+.select-3d__face:nth-of-type(3) {
+    transform-origin: left;
+    transform: translateX(134px) rotateY(72deg);
+}
+
+/* initial left-back face */
+.select-3d__face:nth-of-type(4) {
+    transform-origin: right;
+    transform: translateX(-175px) translateZ(-125px) rotateY(-144deg);
+}
+
+/* initial right-back face */
+.select-3d__face:nth-of-type(5) {
+    transform-origin: left;
+    transform: translateX(174px) translateZ(-125px) rotateY(144deg);
+}
+
+.select-3d .select-3d--scissors {
+    transform: rotateY(0) translate(0);
+}
+
+.select-3d .select-3d--paper {
+    transform-origin: right;
+    transform: rotateY(72deg) translateZ(14px) translateX(120px);
+}
+
+.select-3d .select-3d--rock {
+    transform-origin: left;
+    transform: rotateY(-72deg) translateX(-134px);
+}
+
+.select-3d .select-3d--lizard {
+    transform-origin: right;
+    transform: rotateY(144deg) translateZ(135px) translateX(144px);
+}
+
+.select-3d .select-3d--spock {
+    transform-origin: left;
+    transform: rotateY(-144deg) translateZ(125px) translateX(-174px);
+}
+
+.select-3d .asd {
+    animation-name: roll-moves;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
+
+@keyframes roll-moves {
+    0% {
+        /* rock */
+        transform-origin: left;
+        transform: rotateY(-72deg) translateX(-134px);
+    }
+    20% {
+        /* scissors */
+        transform: rotateY(0) translate(0);
+    }
+    40% {
+        /* paper */
+        transform-origin: right;
+        transform: rotateY(72deg) translateZ(14px) translateX(120px);
+    }
+    60% {
+        /* lizard */
+        transform-origin: right;
+        transform: rotateY(144deg) translateZ(135px) translateX(144px);
+    }
+    80% {
+        /* spock */
+        transform-origin: left;
+        transform: rotateY(216deg) translateZ(125px) translateX(-174px);
+    }
+    100% {
+        /* rock */
+        transform-origin: left;
+        transform: rotateY(288deg) translateX(-134px);
+    }
+}
