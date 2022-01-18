@@ -18,7 +18,7 @@ class Select3D extends Component {
 
         this.state = {
             move: "",
-            confirmationModal: false,
+            hideConfirmationModal: true,
             movementX: 0,
             mouseDown: false,
         };
@@ -74,7 +74,7 @@ class Select3D extends Component {
     };
 
     openModal = () => {
-        this.setState({ confirmationModal: true });
+        this.setState({ hideConfirmationModal: false });
     };
 
     onClickMove = (move) => () => {
@@ -83,7 +83,7 @@ class Select3D extends Component {
     };
 
     closeModal = () => {
-        this.setState({ confirmationModal: false });
+        this.setState({ hideConfirmationModal: true });
     };
 
     onClickConfirmMove = () => {
@@ -118,14 +118,13 @@ class Select3D extends Component {
                         {this.moves.map(this.Button)}
                     </div>
                 </div>
-                {this.state.confirmationModal && (
-                    <MeepMeepModal>
-                        <h2 style={{ color: "white" }}>Confirm your choice:</h2>
-                        <h2 style={{ color: "white" }}>{this.state.move}</h2>
-                        <button onClick={this.onClickConfirmMove}>Yes</button>
-                        <button onClick={this.onClickDiscardMove}>No</button>
-                    </MeepMeepModal>
-                )}
+
+                <MeepMeepModal hide={this.state.hideConfirmationModal}>
+                    <p>Confirm your choice:</p>
+                    <p>{this.state.move}</p>
+                    <button onClick={this.onClickConfirmMove}>Yes</button>
+                    <button onClick={this.onClickDiscardMove}>No</button>
+                </MeepMeepModal>
             </div>
         );
     }

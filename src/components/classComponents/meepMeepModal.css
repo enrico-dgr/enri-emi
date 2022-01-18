@@ -1,6 +1,6 @@
 .meep-meep-modal__container {
     position: fixed;
-    display: table;
+    display: flex;
     height: 100%;
     width: 100%;
     top: 0;
@@ -14,23 +14,36 @@
 }
 
 .meep-meep-modal__container .meep-meep-modal__background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
     background: rgba(0, 0, 0, 0);
     animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-.meep-meep-modal__container .meep-meep-modal__background .meep-meep-modal {
+.meep-meep-modal {
+    width: fit-content;
+    height: fit-content;
+
+    background-color: aliceblue;
+
     transform: translateX(-1500px);
     animation: roadRunnerIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 .meep-meep-modal__container.out {
+    pointer-events: none;
+
     animation: quickScaleDown 0s 0.5s linear forwards;
 }
 
-.meep-meep-modal__container.out .meep-meep-modal__background {
+.meep-meep-modal__background.out {
     animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
-.meep-meep-modal__container.out .meep-meep-modal__background .meep-meep-modal {
+.meep-meep-modal.out {
     animation: roadRunnerOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
