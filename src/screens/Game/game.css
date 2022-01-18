@@ -6,6 +6,12 @@
     overflow: hidden;
     position: relative;
     width: 100vw;
+
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 /* see registration.css => .registration-bg 

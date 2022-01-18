@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import Scoreboard from "../../components/funcComponents/Scoreboard";
 import ScoreboardTransition from "../../components/funcComponents/game/ScoreboardTransition";
 import Select from "../../components/classComponents/Select";
+import Select3D from "../../components/classComponents/game/Select3D";
 import Transition from "../../components/classComponents/Transition";
 import fakeAPI from "../../services/game/scoreboard.api.fake";
 import morracinese from "../../utils/morracinese";
@@ -171,6 +172,7 @@ class Game extends Component {
                                 alt="Versus"
                                 width="200"
                                 height="200"
+                                style={{ pointerEvents: "none" }}
                             />
                             <div
                                 className={
@@ -181,12 +183,7 @@ class Game extends Component {
                                     Wins: {this.state.yourWins}
                                 </p>
 
-                                <Select
-                                    move={this.state.yourMove}
-                                    moves={this.moves}
-                                    imgs={this.movesImgs}
-                                    onClickChoose={this.onClickChoose}
-                                />
+                                <Select3D onClick={() => {}} />
                                 <p className="player-name">
                                     {this.props.playerName}
                                 </p>

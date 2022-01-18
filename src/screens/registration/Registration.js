@@ -32,10 +32,14 @@ class Registration extends Component {
         }
 
         this.setState(newState);
-        setTimeout(() => {
+        this.timeout = setTimeout(() => {
             this.setState({ errorMessage: "" });
         }, 3000);
     };
+
+    componentWillUnmount() {
+        clearTimeout(this.timeout);
+    }
 
     render() {
         return (

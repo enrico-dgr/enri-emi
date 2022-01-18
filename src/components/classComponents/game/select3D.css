@@ -1,44 +1,67 @@
+.select-3d__container {
+    width: 100%;
+}
+
 .select-3d {
+    /* box-shadow: 5px 5px 20px rgba(40, 0, 44, 0.856); */
     height: 120px;
+    margin: 0 0 10px 0;
     position: relative;
-    width: 120px;
-
-    margin: 0 0 7px 0;
-
     transform-style: preserve-3d;
 
-    box-shadow: 5px 5px 20px rgba(40, 0, 44, 0.856);
-    transition: transform 1s;
+    width: 120px;
+
+    transform: rotateX(3deg);
+    transform-origin: center center -98px;
+}
+
+.select-3d__inner {
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.1s;
+    transform-origin: center center -98px;
+    width: 100%;
 }
 
 .select-3d__face {
+    align-items: center;
+    background-color: #4c002e;
+    border: 7px double #f5bc00;
+    display: flex;
+    flex-direction: column;
     height: 120px;
-    width: 120px;
-
+    left: 0;
     position: absolute;
     top: 0;
-    left: 0;
+    width: 120px;
 }
 
-/* initial left-front face */
+.select-3d__face img {
+    height: min-content;
+    max-height: 100px;
+    pointer-events: none;
+}
+
+/* initial paper face */
 .select-3d__face:nth-of-type(2) {
     transform-origin: right;
-    transform: translateX(-134px) translateZ(0) rotateY(-72deg);
+    transform: translateX(-134px) rotateY(-72deg);
 }
 
-/* initial right-front face */
+/* initial rock face */
 .select-3d__face:nth-of-type(3) {
     transform-origin: left;
     transform: translateX(134px) rotateY(72deg);
 }
 
-/* initial left-back face */
+/* initial lizard face */
 .select-3d__face:nth-of-type(4) {
     transform-origin: right;
-    transform: translateX(-175px) translateZ(-125px) rotateY(-144deg);
+    transform: translateX(-174px) translateZ(-125px) rotateY(-144deg);
 }
 
-/* initial right-back face */
+/* initial spock face */
 .select-3d__face:nth-of-type(5) {
     transform-origin: left;
     transform: translateX(174px) translateZ(-125px) rotateY(144deg);
@@ -50,7 +73,7 @@
 
 .select-3d .select-3d--paper {
     transform-origin: right;
-    transform: rotateY(72deg) translateZ(14px) translateX(120px);
+    transform: rotateY(72deg) translateX(134px);
 }
 
 .select-3d .select-3d--rock {
@@ -60,7 +83,7 @@
 
 .select-3d .select-3d--lizard {
     transform-origin: right;
-    transform: rotateY(144deg) translateZ(135px) translateX(144px);
+    transform: rotateY(144deg) translateZ(125px) translateX(174px);
 }
 
 .select-3d .select-3d--spock {
