@@ -98,8 +98,10 @@ class Select3D extends Component {
     };
 
     onClickMove = (move) => () => {
-        this.setState({ move });
-        this.openModal();
+        if (this.props.disableChoose === false) {
+            this.setState({ move });
+            this.openModal();
+        }
     };
 
     closeModal = () => {
@@ -125,7 +127,7 @@ class Select3D extends Component {
             this.props.onSetMove(this.state.move);
 
             this.timeoutResetAnimation = setTimeout(() => {
-                this.setState({ move: this.moves[0] });
+                this.setState({ move: "reset" });
             }, 500);
         }, 4500);
     };
@@ -193,7 +195,7 @@ class Select3D extends Component {
 
                 <MeepMeepModal hide={this.state.hideConfirmationModal}>
                     <p>
-                        Confirm <span>{this.state.move}</span>?
+                        Confirm <span>{this.state.move.toUpperCase()}</span>?
                     </p>
                     <button onClick={this.onClickConfirmMove}>Yes</button>
                     <button onClick={this.onClickDiscardMove}>No</button>
@@ -217,12 +219,14 @@ class Select3D extends Component {
 }
 
 Select3D.defaultProps = {
+    disableChoose: false,
     enemyMove: "",
     isEnemy: false,
     onSetMove: () => undefined,
 };
 
 Select3D.propTypes = {
+    disableChoose: PropTypes.bool,
     enemyMove: PropTypes.string,
     isEnemy: PropTypes.bool,
     onSetMove: PropTypes.func,

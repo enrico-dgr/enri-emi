@@ -25,11 +25,12 @@ class Game extends Component {
             yourMove: this.moves[0],
             enemyMove: "",
             round: 0,
+            roundMessage: "",
             result: "YOU WON",
-            roundWinner: "",
             yourWins: 0,
             enemyWins: 0,
             isEnd: false,
+            disableChoose: false,
             showRoundModal: false,
             showScoreboard: true,
             scoreboard: this.props.scoreboard,
@@ -68,57 +69,10 @@ class Game extends Component {
         });
     };
 
-    endMatch = () => {
-        let timeOutState = {
-            yourWins: 0,
-            enemyWins: 0,
-            round: 0,
-            scoreboardTransition: true,
-            isEnd: false,
-            scoreboard: fakeAPI.getScoreboard(),
-        };
-
-        if (this.state.yourWins > 2 && this.isScoreboardUpdated === false) {
-            timeOutState.scoreboard = fakeAPI.increasePlayerScore(
-                this.props.playerName
-            );
-            this.isScoreboardUpdated = true;
-        }
-
-        setTimeout(() => {
-            this.setState(timeOutState);
-        }, 5000);
-    };
-    // deprecated
-    onClickChoose = (yourMove) => {
-        const enemyMove = morracinese.getRandomMove();
-        const whoWon = morracinese.evaluateRound(yourMove, enemyMove);
-
-        let newState = {
-            ...this.state,
-            yourMove,
-            enemyMove,
-            round: this.state.round + 1,
-        };
-
-        if (whoWon === "first") {
-            newState.yourWins = this.state.yourWins + 1;
-        } else if (whoWon === "second") {
-            newState.enemyWins = this.state.enemyWins + 1;
-        }
-
-        if (newState.yourWins > 2) {
-            newState = { ...newState, result: "YOU WON!", isEnd: true };
-        } else if (newState.enemyWins > 2) {
-            newState = { ...newState, result: "YOU LOSE!", isEnd: true };
-        }
-
-        this.setState(newState);
-    };
-
     // take client player's move
     onSetMove = (yourMove) => {
         let newState = {
+            disableChoose: true,
             yourMove,
             enemyMove: morracinese.getRandomMove(),
         };
@@ -139,10 +93,22 @@ class Game extends Component {
 
         if (whoWon === "first") {
             newState.yourWins = this.state.yourWins + 1;
-            newState.roundWinner = this.props.playerName;
+            newState.roundMessage = `
+            ${this.state.yourMove.toUpperCase()}
+                beats
+            ${this.state.enemyMove.toUpperCase()}.
+            You win this round.
+        `;
         } else if (whoWon === "second") {
             newState.enemyWins = this.state.enemyWins + 1;
-            newState.roundWinner = "enemy player";
+            newState.roundMessage = `
+            ${this.state.yourMove.toUpperCase()}
+                loses with
+            ${this.state.enemyMove.toUpperCase()}.
+            You lose this round.
+        `;
+        } else {
+            newState.roundMessage = "DRAW";
         }
 
         // check end-match
@@ -163,15 +129,41 @@ class Game extends Component {
         }
         newState.enemyMove = "";
         this.setState(newState);
+    };
 
+    closeRoundModal = () => {
         // reset end round modal
-        let timeoutState = {};
-        if (newState.showRoundModal) {
+        let timeoutState = {
+            disableChoose: false,
+        };
+        if (this.state.showRoundModal) {
             timeoutState.showRoundModal = false;
         }
+        this.setState(timeoutState);
+    };
+
+    // reset everything you need to reset
+    endMatch = () => {
+        let timeOutState = {
+            yourWins: 0,
+            enemyWins: 0,
+            round: 0,
+            disableChoose: false,
+            scoreboardTransition: true,
+            isEnd: false,
+            scoreboard: fakeAPI.getScoreboard(),
+        };
+
+        if (this.state.yourWins > 2 && this.isScoreboardUpdated === false) {
+            timeOutState.scoreboard = fakeAPI.increasePlayerScore(
+                this.props.playerName
+            );
+            this.isScoreboardUpdated = true;
+        }
+
         setTimeout(() => {
-            this.setState(timeoutState);
-        }, 2000);
+            this.setState(timeOutState);
+        }, 5000);
     };
 
     render() {
@@ -243,7 +235,10 @@ class Game extends Component {
                                     Wins: {this.state.yourWins}
                                 </p>
 
-                                <Select3D onSetMove={this.onSetMove} />
+                                <Select3D
+                                    disableChoose={this.state.disableChoose}
+                                    onSetMove={this.onSetMove}
+                                />
                                 <p className="player-name">
                                     {this.props.playerName}
                                 </p>
@@ -251,8 +246,8 @@ class Game extends Component {
                         </div>
                     )}
                     <MeepMeepModal hide={!this.state.showRoundModal}>
-                        <p>Round finito</p>
-                        <p>Round winner is {this.state.roundWinner}</p>
+                        <p>{this.state.roundMessage}</p>
+                        <button onClick={this.closeRoundModal}>OK</button>
                     </MeepMeepModal>
                     {this.state.isEnd && (
                         <Modal className={"game__modal-result"}>
