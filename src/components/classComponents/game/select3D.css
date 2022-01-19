@@ -10,18 +10,20 @@
 }
 
 .select-3d__container .meep-meep-modal p {
+    font-size: 20px;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
 }
 
 .select-3d__container .meep-meep-modal button {
-    margin: 4px 8px;
-    width: 50px;
+    padding: 4px 8px;
+    width: 70px;
 
     background-color: transparent;
     border: 0;
-    border-radius: 10px;
     color: white;
-    /* box-shadow: 0 2px 10px black; */
-    text-shadow: 0 0 7px black, 3px 4px 4px rgba(133, 0, 78, 0.486);
+    font-size: 20px;
+    text-shadow: 0 0 10px black, 8px 4px 15px rgba(133, 0, 78, 0.644);
 }
 
 .select-3d__container .meep-meep-modal button:first-of-type {

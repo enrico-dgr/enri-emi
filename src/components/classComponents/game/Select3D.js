@@ -120,8 +120,9 @@ class Select3D extends Component {
                 </div>
 
                 <MeepMeepModal hide={this.state.hideConfirmationModal}>
-                    <p>Confirm your choice:</p>
-                    <p>{this.state.move}</p>
+                    <p>
+                        Confirm <span>{this.state.move}</span>?
+                    </p>
                     <button onClick={this.onClickConfirmMove}>Yes</button>
                     <button onClick={this.onClickDiscardMove}>No</button>
                 </MeepMeepModal>
