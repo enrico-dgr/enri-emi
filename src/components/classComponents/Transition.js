@@ -39,6 +39,7 @@ class Transition extends Component {
             this.transitionStart();
         } else if (this.props.transitionOn === false) {
             this.started = false;
+            return null;
         }
 
         return (

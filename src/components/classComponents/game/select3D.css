@@ -1,0 +1,296 @@
+.select-3d__container {
+    width: 100%;
+}
+
+.select-3d__container--enemy {
+    margin-bottom: 8px;
+}
+
+/*       */
+/* MODAL */
+/*       */
+.select-3d__container .meep-meep-modal {
+    padding: 20px 40px;
+    text-align: center;
+
+    background-color: #1f8b8ba4;
+}
+
+.select-3d__container .meep-meep-modal p {
+    font-size: 20px;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    color: rgb(255, 208, 0);
+    text-shadow: 0 0 20px black, 8px 4px 10px rgba(91, 0, 133, 0.685);
+}
+
+.select-3d__container .meep-meep-modal button {
+    padding: 4px 8px;
+    width: 70px;
+
+    background-color: transparent;
+    border: 0;
+    color: white;
+    font-size: 20px;
+    text-shadow: 0 0 10px black, 8px 4px 15px rgba(133, 0, 78, 0.644);
+}
+
+/*           */
+/* 3D OBJECT */
+/*           */
+.select-3d {
+    height: 120px;
+    margin: 0 0 10px 0;
+    position: relative;
+    transform-style: preserve-3d;
+
+    width: 120px;
+
+    transform: rotateX(3deg);
+    transform-origin: center center -98px;
+}
+
+.select-3d--enemy {
+    pointer-events: none;
+    transform: rotateX(-3deg);
+}
+
+.select-3d__inner {
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.1s;
+    transform-origin: center center -98px;
+    width: 100%;
+}
+
+.select-3d__face {
+    align-items: center;
+    background-color: #4c002e;
+    border: 7px double #f5bc00;
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 120px;
+}
+
+.select-3d__face img {
+    height: min-content;
+    max-height: 100px;
+    pointer-events: none;
+}
+
+.select-3d__face .choice {
+    margin: 0;
+    /* margin-bottom: 10px; */
+    font-family: "Inter-SemiBold", "Inter", sans-serif;
+    color: #f5bc00;
+    text-transform: uppercase;
+}
+
+/* initial paper face */
+.select-3d__face:nth-of-type(2) {
+    transform-origin: right;
+    transform: translateX(-134px) rotateY(-72deg);
+}
+
+/* initial rock face */
+.select-3d__face:nth-of-type(3) {
+    transform-origin: left;
+    transform: translateX(134px) rotateY(72deg);
+}
+
+/* initial lizard face */
+.select-3d__face:nth-of-type(4) {
+    transform-origin: right;
+    transform: translateX(-174px) translateZ(-125px) rotateY(-144deg);
+}
+
+/* initial spock face */
+.select-3d__face:nth-of-type(5) {
+    transform-origin: left;
+    transform: translateX(174px) translateZ(-125px) rotateY(144deg);
+}
+
+.select-3d__inner__animation {
+    /* animation-name: roll-moves; */
+    animation-duration: 0.5s;
+    animation-fill-mode: initial;
+    animation-iteration-count: 4;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
+
+.select-3d__inner__animation.select-3d__inner__animation--reset {
+    /* animation-name: roll-moves-reset; */
+    animation-duration: 0.7s;
+    animation-iteration-count: 1;
+    /* transform: rotateY(0) translate(0); */
+    animation-name: reset;
+    transform: rotateY(0);
+}
+
+.select-3d__inner__animation.select-3d__inner__animation--scissors {
+    /* animation-name: roll-moves-scissors; */
+    /* transform: rotateY(0) translate(0); */
+    animation-name: scissors;
+    transform: rotateY(0);
+}
+
+.select-3d__inner__animation.select-3d__inner__animation--paper {
+    /* animation-name: roll-moves-paper; */
+    /* transform-origin: right; */
+    /* transform: rotateY(72deg) translateX(134px); */
+    animation-name: paper;
+    transform: rotateY(72deg);
+}
+
+.select-3d__inner__animation.select-3d__inner__animation--rock {
+    /* animation-name: roll-moves-rock; */
+    /* transform-origin: left; */
+    /* transform: rotateY(-72deg) translateX(-134px); */
+    animation-name: rock;
+    transform: rotateY(-72deg);
+}
+
+.select-3d__inner__animation.select-3d__inner__animation--lizard {
+    /* animation-name: roll-moves-lizard; */
+    /* transform-origin: right; */
+    /* transform: rotateY(144deg) translateZ(125px) translateX(174px); */
+    animation-name: lizard;
+    transform: rotateY(144deg);
+}
+
+.select-3d__inner__animation.select-3d__inner__animation--spock {
+    /* animation-name: roll-moves-spock; */
+    /* transform-origin: left; */
+    /* transform: rotateY(-144deg) translateZ(125px) translateX(-174px); */
+    animation-name: spock;
+    transform: rotateY(216deg);
+}
+
+@keyframes reset {
+    0% {
+        transform: rotateY(0);
+    }
+    20% {
+        transform: rotateY(72deg);
+    }
+    40% {
+        transform: rotateY(144deg);
+    }
+    60% {
+        transform: rotateY(216deg);
+    }
+    80% {
+        transform: rotateY(288deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+@keyframes scissors {
+    0% {
+        transform: rotateY(0);
+    }
+    20% {
+        transform: rotateY(72deg);
+    }
+    40% {
+        transform: rotateY(144deg);
+    }
+    60% {
+        transform: rotateY(216deg);
+    }
+    80% {
+        transform: rotateY(288deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+@keyframes paper {
+    0% {
+        transform: rotateY(72deg);
+    }
+    20% {
+        transform: rotateY(144deg);
+    }
+    40% {
+        transform: rotateY(216deg);
+    }
+    60% {
+        transform: rotateY(288deg);
+    }
+    80% {
+        transform: rotateY(360deg);
+    }
+    100% {
+        transform: rotateY(432deg);
+    }
+}
+@keyframes lizard {
+    0% {
+        transform: rotateY(144deg);
+    }
+    20% {
+        transform: rotateY(216deg);
+    }
+    40% {
+        transform: rotateY(288deg);
+    }
+    60% {
+        transform: rotateY(360deg);
+    }
+    80% {
+        transform: rotateY(432deg);
+    }
+    100% {
+        transform: rotateY(504deg);
+    }
+}
+@keyframes rock {
+    0% {
+        transform: rotateY(-72deg);
+    }
+    20% {
+        transform: rotateY(0deg);
+    }
+    40% {
+        transform: rotateY(72);
+    }
+    60% {
+        transform: rotateY(144deg);
+    }
+    80% {
+        transform: rotateY(216deg);
+    }
+    100% {
+        transform: rotateY(288deg);
+    }
+}
+@keyframes spock {
+    0% {
+        transform: rotateY(-144deg);
+    }
+    20% {
+        transform: rotateY(-72deg);
+    }
+    40% {
+        transform: rotateY(0);
+    }
+    60% {
+        transform: rotateY(72deg);
+    }
+    80% {
+        transform: rotateY(144deg);
+    }
+    100% {
+        transform: rotateY(216deg);
+    }
+}
