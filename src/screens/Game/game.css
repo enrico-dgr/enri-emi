@@ -160,7 +160,7 @@ for explanations */
     font-weight: bold;
     color: #f5bc00;
     font-size: 20px;
-    text-shadow: 1px 2px 3px #000000;
+    text-shadow: 1px 2px 3px #000000, 4px 5px 8px #000000;
     letter-spacing: 0px;
     line-height: 1.2;
     text-transform: uppercase;
@@ -174,13 +174,42 @@ for explanations */
     font-weight: bold;
     color: #f5bc00;
     font-size: 20px;
-    text-shadow: 1px 2px 3px #000000;
+    text-shadow: 0px 0px 2px #000000, 1px 1px 3px #000000;
     letter-spacing: 0px;
     line-height: 1;
     text-transform: uppercase;
     text-align: center;
 }
 
+/*             */
+/* ROUND MODAL */
+/*             */
+.game__content .meep-meep-modal {
+    padding: 20px 40px;
+    text-align: center;
+
+    background-color: #1f8b8ba4;
+}
+
+.game__content .meep-meep-modal p {
+    font-size: 20px;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    color: rgb(255, 208, 0);
+    text-shadow: 0 0 20px black, 8px 4px 10px rgba(91, 0, 133, 0.685);
+}
+
+.game__content .meep-meep-modal button {
+    padding: 4px 8px;
+    width: 70px;
+
+    background-color: transparent;
+    border: 0;
+    color: white;
+    font-size: 20px;
+    text-shadow: 0 0 10px black, 8px 4px 15px rgba(133, 0, 78, 0.644);
+}
+/*       */
 .game__modal-result {
     color: black;
     height: 60vh;

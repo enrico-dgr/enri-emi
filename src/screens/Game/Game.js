@@ -2,11 +2,11 @@ import "./game.css";
 
 import { Component } from "react";
 //Components
+import MeepMeepModal from "../../components/classComponents/MeepMeepModal";
 import Modal from "../../components/funcComponents/Modal";
 import PropTypes from "prop-types";
 import Scoreboard from "../../components/funcComponents/Scoreboard";
 import ScoreboardTransition from "../../components/funcComponents/game/ScoreboardTransition";
-import Select from "../../components/classComponents/Select";
 import Select3D from "../../components/classComponents/game/Select3D";
 import Transition from "../../components/classComponents/Transition";
 import fakeAPI from "../../services/game/scoreboard.api.fake";
@@ -23,12 +23,14 @@ class Game extends Component {
 
         this.state = {
             yourMove: this.moves[0],
-            enemyMove: this.moves[3],
+            enemyMove: "",
             round: 0,
             result: "YOU WON",
+            roundWinner: "",
             yourWins: 0,
             enemyWins: 0,
             isEnd: false,
+            showRoundModal: false,
             showScoreboard: true,
             scoreboard: this.props.scoreboard,
             scoreboardTransition: false,
@@ -87,7 +89,7 @@ class Game extends Component {
             this.setState(timeOutState);
         }, 5000);
     };
-
+    // deprecated
     onClickChoose = (yourMove) => {
         const enemyMove = morracinese.getRandomMove();
         const whoWon = morracinese.evaluateRound(yourMove, enemyMove);
@@ -112,6 +114,64 @@ class Game extends Component {
         }
 
         this.setState(newState);
+    };
+
+    // take client player's move
+    onSetMove = (yourMove) => {
+        let newState = {
+            yourMove,
+            enemyMove: morracinese.getRandomMove(),
+        };
+
+        this.setState(newState);
+    };
+
+    onSetEnemyMove = () => {
+        const whoWon = morracinese.evaluateRound(
+            this.state.yourMove,
+            this.state.enemyMove
+        );
+
+        let newState = {
+            round: this.state.round + 1,
+            showRoundModal: true,
+        };
+
+        if (whoWon === "first") {
+            newState.yourWins = this.state.yourWins + 1;
+            newState.roundWinner = this.props.playerName;
+        } else if (whoWon === "second") {
+            newState.enemyWins = this.state.enemyWins + 1;
+            newState.roundWinner = "enemy player";
+        }
+
+        // check end-match
+        if (newState.yourWins > 2) {
+            newState = {
+                ...newState,
+                result: "YOU WON!",
+                isEnd: true,
+                showRoundModal: false,
+            };
+        } else if (newState.enemyWins > 2) {
+            newState = {
+                ...newState,
+                result: "YOU LOSE!",
+                isEnd: true,
+                showRoundModal: false,
+            };
+        }
+        newState.enemyMove = "";
+        this.setState(newState);
+
+        // reset end round modal
+        let timeoutState = {};
+        if (newState.showRoundModal) {
+            timeoutState.showRoundModal = false;
+        }
+        setTimeout(() => {
+            this.setState(timeoutState);
+        }, 2000);
     };
 
     render() {
@@ -157,11 +217,11 @@ class Game extends Component {
                                 }
                             >
                                 <p className="player-name">Computer</p>
-                                <Select
-                                    disable={true}
-                                    move={this.state.enemyMove}
-                                    moves={this.moves}
-                                    imgs={this.movesImgs}
+                                <Select3D
+                                    isEnemy
+                                    enemyMove={this.state.enemyMove}
+                                    // enemyMove={"paper"}
+                                    onSetMove={this.onSetEnemyMove}
                                 />
                                 <p className={"score"}>
                                     Wins: {this.state.enemyWins}
@@ -183,13 +243,17 @@ class Game extends Component {
                                     Wins: {this.state.yourWins}
                                 </p>
 
-                                <Select3D onClick={() => {}} />
+                                <Select3D onSetMove={this.onSetMove} />
                                 <p className="player-name">
                                     {this.props.playerName}
                                 </p>
                             </div>
                         </div>
                     )}
+                    <MeepMeepModal hide={!this.state.showRoundModal}>
+                        <p>Round finito</p>
+                        <p>Round winner is {this.state.roundWinner}</p>
+                    </MeepMeepModal>
                     {this.state.isEnd && (
                         <Modal className={"game__modal-result"}>
                             {this.endMatch()}

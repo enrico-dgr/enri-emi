@@ -2,17 +2,26 @@
     width: 100%;
 }
 
+.select-3d__container--enemy {
+    margin-bottom: 8px;
+}
+
+/*       */
+/* MODAL */
+/*       */
 .select-3d__container .meep-meep-modal {
     padding: 20px 40px;
     text-align: center;
 
-    background-color: #1f8b8b;
+    background-color: #1f8b8ba4;
 }
 
 .select-3d__container .meep-meep-modal p {
     font-size: 20px;
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
         "Lucida Sans", Arial, sans-serif;
+    color: rgb(255, 208, 0);
+    text-shadow: 0 0 20px black, 8px 4px 10px rgba(91, 0, 133, 0.685);
 }
 
 .select-3d__container .meep-meep-modal button {
@@ -26,12 +35,10 @@
     text-shadow: 0 0 10px black, 8px 4px 15px rgba(133, 0, 78, 0.644);
 }
 
-.select-3d__container .meep-meep-modal button:first-of-type {
-    /* background-color: ; */
-}
-
+/*           */
+/* 3D OBJECT */
+/*           */
 .select-3d {
-    /* box-shadow: 5px 5px 20px rgba(40, 0, 44, 0.856); */
     height: 120px;
     margin: 0 0 10px 0;
     position: relative;
@@ -41,6 +48,11 @@
 
     transform: rotateX(3deg);
     transform-origin: center center -98px;
+}
+
+.select-3d--enemy {
+    pointer-events: none;
+    transform: rotateX(-3deg);
 }
 
 .select-3d__inner {
@@ -71,6 +83,14 @@
     pointer-events: none;
 }
 
+.select-3d__face .choice {
+    margin: 0;
+    /* margin-bottom: 10px; */
+    font-family: "Inter-SemiBold", "Inter", sans-serif;
+    color: #f5bc00;
+    text-transform: uppercase;
+}
+
 /* initial paper face */
 .select-3d__face:nth-of-type(2) {
     transform-origin: right;
@@ -94,6 +114,208 @@
     transform-origin: left;
     transform: translateX(174px) translateZ(-125px) rotateY(144deg);
 }
+
+.select-3d__inner__animation {
+    /* animation-name: roll-moves; */
+    animation-duration: 1s;
+    animation-fill-mode: initial;
+    animation-iteration-count: 3;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
+
+/* .select-3d__inner__animation.select-3d__inner__animation--paper {
+    animation-name: roll-moves-paper;
+    transform-origin: right;
+    transform: rotateY(72deg) translateX(134px);
+} */
+
+.select-3d__inner__animation.select-3d__inner__animation--paper {
+    animation-name: roll-moves-paper;
+    transform-origin: right;
+    transform: rotateY(72deg) translateX(134px);
+}
+
+.select-3d__inner__animation.select-3d__inner__animation--scissors {
+    animation-name: roll-moves-scissors;
+    transform: rotateY(0) translate(0);
+}
+
+.select-3d__inner__animation.select-3d__inner__animation--rock {
+    animation-name: roll-moves-rock;
+    transform-origin: left;
+    transform: rotateY(-72deg) translateX(-134px);
+}
+
+.select-3d__inner__animation.select-3d__inner__animation--lizard {
+    animation-name: roll-moves-lizard;
+    transform-origin: right;
+    transform: rotateY(144deg) translateZ(125px) translateX(174px);
+}
+
+.select-3d__inner__animation.select-3d__inner__animation--spock {
+    animation-name: roll-moves-spock;
+    transform-origin: left;
+    transform: rotateY(-144deg) translateZ(125px) translateX(-174px);
+}
+
+@keyframes roll-moves-paper {
+    0% {
+        /* rock */
+        transform-origin: left;
+        transform: rotateY(-72deg) translateX(-134px);
+    }
+    20% {
+        /* scissors */
+        transform: rotateY(0) translate(0);
+    }
+    40% {
+        /* paper */
+        transform-origin: right;
+        transform: rotateY(72deg) translateZ(14px) translateX(120px);
+    }
+    60% {
+        /* lizard */
+        transform-origin: right;
+        transform: rotateY(144deg) translateZ(135px) translateX(144px);
+    }
+    80% {
+        /* spock */
+        transform-origin: left;
+        transform: rotateY(216deg) translateZ(125px) translateX(-174px);
+    }
+    100% {
+        /* rock */
+        transform-origin: left;
+        transform: rotateY(288deg) translateX(-134px);
+    }
+}
+@keyframes roll-moves-scissors {
+    0% {
+        /* rock */
+        transform-origin: left;
+        transform: rotateY(-72deg) translateX(-134px);
+    }
+    20% {
+        /* scissors */
+        transform: rotateY(0) translate(0);
+    }
+    40% {
+        /* paper */
+        transform-origin: right;
+        transform: rotateY(72deg) translateZ(14px) translateX(120px);
+    }
+    60% {
+        /* lizard */
+        transform-origin: right;
+        transform: rotateY(144deg) translateZ(135px) translateX(144px);
+    }
+    80% {
+        /* spock */
+        transform-origin: left;
+        transform: rotateY(216deg) translateZ(125px) translateX(-174px);
+    }
+    100% {
+        /* rock */
+        transform-origin: left;
+        transform: rotateY(288deg) translateX(-134px);
+    }
+}
+@keyframes roll-moves-rock {
+    0% {
+        /* rock */
+        transform-origin: left;
+        transform: rotateY(-72deg) translateX(-134px);
+    }
+    20% {
+        /* scissors */
+        transform: rotateY(0) translate(0);
+    }
+    40% {
+        /* paper */
+        transform-origin: right;
+        transform: rotateY(72deg) translateZ(14px) translateX(120px);
+    }
+    60% {
+        /* lizard */
+        transform-origin: right;
+        transform: rotateY(144deg) translateZ(135px) translateX(144px);
+    }
+    80% {
+        /* spock */
+        transform-origin: left;
+        transform: rotateY(216deg) translateZ(125px) translateX(-174px);
+    }
+    100% {
+        /* rock */
+        transform-origin: left;
+        transform: rotateY(288deg) translateX(-134px);
+    }
+}
+@keyframes roll-moves-lizard {
+    0% {
+        /* rock */
+        transform-origin: left;
+        transform: rotateY(-72deg) translateX(-134px);
+    }
+    20% {
+        /* scissors */
+        transform: rotateY(0) translate(0);
+    }
+    40% {
+        /* paper */
+        transform-origin: right;
+        transform: rotateY(72deg) translateZ(14px) translateX(120px);
+    }
+    60% {
+        /* lizard */
+        transform-origin: right;
+        transform: rotateY(144deg) translateZ(135px) translateX(144px);
+    }
+    80% {
+        /* spock */
+        transform-origin: left;
+        transform: rotateY(216deg) translateZ(125px) translateX(-174px);
+    }
+    100% {
+        /* rock */
+        transform-origin: left;
+        transform: rotateY(288deg) translateX(-134px);
+    }
+}
+@keyframes roll-moves-spock {
+    0% {
+        /* rock */
+        transform-origin: left;
+        transform: rotateY(-72deg) translateX(-134px);
+    }
+    20% {
+        /* scissors */
+        transform: rotateY(0) translate(0);
+    }
+    40% {
+        /* paper */
+        transform-origin: right;
+        transform: rotateY(72deg) translateZ(14px) translateX(120px);
+    }
+    60% {
+        /* lizard */
+        transform-origin: right;
+        transform: rotateY(144deg) translateZ(135px) translateX(144px);
+    }
+    80% {
+        /* spock */
+        transform-origin: left;
+        transform: rotateY(216deg) translateZ(125px) translateX(-174px);
+    }
+    100% {
+        /* rock */
+        transform-origin: left;
+        transform: rotateY(288deg) translateX(-134px);
+    }
+}
+
+/* OLD EXAMPLES */
 
 .select-3d .select-3d--scissors {
     transform: rotateY(0) translate(0);
@@ -126,36 +348,4 @@
     animation-iteration-count: infinite;
     animation-direction: normal;
     animation-timing-function: linear;
-}
-
-@keyframes roll-moves {
-    0% {
-        /* rock */
-        transform-origin: left;
-        transform: rotateY(-72deg) translateX(-134px);
-    }
-    20% {
-        /* scissors */
-        transform: rotateY(0) translate(0);
-    }
-    40% {
-        /* paper */
-        transform-origin: right;
-        transform: rotateY(72deg) translateZ(14px) translateX(120px);
-    }
-    60% {
-        /* lizard */
-        transform-origin: right;
-        transform: rotateY(144deg) translateZ(135px) translateX(144px);
-    }
-    80% {
-        /* spock */
-        transform-origin: left;
-        transform: rotateY(216deg) translateZ(125px) translateX(-174px);
-    }
-    100% {
-        /* rock */
-        transform-origin: left;
-        transform: rotateY(288deg) translateX(-134px);
-    }
 }

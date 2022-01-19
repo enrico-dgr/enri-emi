@@ -12,7 +12,7 @@ class Select3D extends Component {
 
         this.moves = morracinese.getDefaultMoves();
         this.imgs = morracinese.getDefaultMovesImgs();
-        this.timeoutUpdateOrientation = {};
+        this.timeoutEnemyAnimation = null;
 
         this.previouseTouchX = 0;
 
@@ -24,16 +24,24 @@ class Select3D extends Component {
         };
     }
 
-    onMouseUp = () => {
-        this.previouseTouchX = 0;
-
-        this.setState({
-            mouseDown: false,
-        });
-    };
-
     componentDidMount() {
         window.addEventListener("mouseup", this.onMouseUp);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (
+            this.props.enemyMove !== "" &&
+            this.props.enemyMove !== prevProps.enemyMove &&
+            this.props.isEnemy
+        ) {
+            // `enemyMove` will trigger an animation,
+            // this function will properly set the value after animation is done.
+            // Notice: the two events are async, so if animation changes,
+            // you must change the delay in this function accordingly.
+            this.setEnemyMoveAfterAnimation();
+
+            this.setState({ move: this.props.enemyMove });
+        }
     }
 
     onMouseDown = () => {
@@ -52,6 +60,14 @@ class Select3D extends Component {
         }
 
         this.setState(newState);
+    };
+
+    onMouseUp = () => {
+        this.previouseTouchX = 0;
+
+        this.setState({
+            mouseDown: false,
+        });
     };
 
     onTouchStart = (e) => {
@@ -73,6 +89,10 @@ class Select3D extends Component {
         this.setState(newState);
     };
 
+    /**
+     * User choosing move
+     */
+
     openModal = () => {
         this.setState({ hideConfirmationModal: false });
     };
@@ -87,7 +107,7 @@ class Select3D extends Component {
     };
 
     onClickConfirmMove = () => {
-        this.props.onClick(this.state.move);
+        this.props.onSetMove(this.state.move);
         this.closeModal();
     };
 
@@ -95,25 +115,77 @@ class Select3D extends Component {
         this.closeModal();
     };
 
+    /**
+     * Enemy move: `this.props.enemyMove`'s animations
+     * `this.state.move` is assigned in componentDidUpdate
+     */
+
+    setEnemyMoveAfterAnimation = () => {
+        this.timeoutEnemyAnimation = setTimeout(() => {
+            this.props.onSetMove(this.state.move);
+
+            this.timeoutResetAnimation = setTimeout(() => {
+                this.setState({ move: this.moves[0] });
+            }, 500);
+        }, 4500);
+    };
+
+    /**
+     * Unmount
+     */
+
     componentWillUnmount() {
         window.removeEventListener("mouseup", this.onMouseUp);
+
+        if (this.timeoutEnemyAnimation !== null) {
+            clearInterval(this.timeoutEnemyAnimation);
+        }
     }
 
     render() {
         return (
             <div
-                className="select-3d__container"
-                onMouseDown={this.onMouseDown}
-                onTouchStart={this.onTouchStart}
-                onMouseMove={this.onMouseMove}
-                onTouchMove={this.onTouchMove}
+                className={`select-3d__container ${
+                    this.props.isEnemy ? "select-3d__container--enemy" : ""
+                }`}
+                {...(this.props.isEnemy
+                    ? {}
+                    : {
+                          onMouseDown: this.onMouseDown,
+                          onTouchStart: this.onTouchStart,
+                          onMouseMove: this.onMouseMove,
+                          onTouchMove: this.onTouchMove,
+                      })}
             >
-                <div className="select-3d">
+                {/* select-3d : rotation offset */}
+                <div
+                    {...(this.props.isEnemy
+                        ? {
+                              className: `select-3d select-3d--enemy`,
+                          }
+                        : {
+                              className: `select-3d`,
+                          })}
+                >
+                    {/* select-3d__inner : this is what rotate dynamically */}
                     <div
-                        className="select-3d__inner"
-                        style={{
-                            transform: `rotateY(${this.state.movementX}deg)`,
-                        }}
+                        {...(this.props.isEnemy
+                            ? // enemy or bot
+                              {
+                                  className: `select-3d__inner select-3d__inner__animation ${
+                                      this.state.move !== ""
+                                          ? "select-3d__inner__animation--" +
+                                            this.state.move
+                                          : ""
+                                  }`,
+                              }
+                            : // client player
+                              {
+                                  className: `select-3d__inner`,
+                                  style: {
+                                      transform: `rotateY(${this.state.movementX}deg)`,
+                                  },
+                              })}
                     >
                         {this.moves.map(this.Button)}
                     </div>
@@ -145,15 +217,15 @@ class Select3D extends Component {
 }
 
 Select3D.defaultProps = {
-    disable: false,
-    isUser: false,
-    onClick: () => undefined,
+    enemyMove: "",
+    isEnemy: false,
+    onSetMove: () => undefined,
 };
 
 Select3D.propTypes = {
-    disable: PropTypes.bool,
-    isUser: PropTypes.bool,
-    onClick: PropTypes.func,
+    enemyMove: PropTypes.string,
+    isEnemy: PropTypes.bool,
+    onSetMove: PropTypes.func,
 };
 
 export default Select3D;

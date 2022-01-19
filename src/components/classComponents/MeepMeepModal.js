@@ -18,8 +18,36 @@ class MeepMeepModal extends Component {
         this.disable = false;
 
         this.state = {
-            disableAsync: false,
+            disableAsync: true,
         };
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (
+            nextProps.hide === this.props.hide &&
+            nextState.disableAsync === this.state.disableAsync
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    componentDidUpdate() {
+        if (this.disable === false && this.props.hide) {
+            this.disable = true;
+            this.disableComp();
+        } else if (this.disable && this.props.hide === false) {
+            // Component is requested but last timeout of `this.disableComp`
+            // is not finished yet.
+            // This prevent the new animation/modal to disappear halfway.
+            if (this.state.disableAsync === false) {
+                clearTimeout(this.timeout);
+            } else {
+                this.showComp();
+            }
+            this.disable = false;
+        }
     }
 
     showComp = () => {
@@ -38,22 +66,6 @@ class MeepMeepModal extends Component {
     }
 
     render() {
-        if (this.disable === false && this.props.hide) {
-            this.disable = true;
-            this.disableComp();
-        } else if (this.disable && this.props.hide === false) {
-            // Component is requested but it is last timeout of `this.disableComp`
-            // is not finished yet. It would close the new rendering halfway.
-            // These two lines are an anticipated "reset" of component.
-
-            if (this.state.disableAsync === false) {
-                clearTimeout(this.timeout);
-            } else {
-                this.showComp();
-            }
-            this.disable = false;
-        }
-
         return (
             (this.state.disableAsync === false ||
                 this.props.hide === false) && (
