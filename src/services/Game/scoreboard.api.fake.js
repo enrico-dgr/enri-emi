@@ -63,10 +63,12 @@ const increasePlayerScore = (playerName) => {
     return scoreboard;
 };
 
-module.exports = {
+const scoreboardAPIFake = {
     getScoreboard,
     setScoreboard,
     initializePlayer,
     increasePlayerScore,
     scoreboardFixture,
 };
+
+export default scoreboardAPIFake;
