@@ -11,6 +11,7 @@ import Transition from "../../components/classComponents/Transition";
 import fakeAPI from "../../services/game/scoreboard.api.fake";
 import morracinese from "../../utils/morracinese";
 import versus from "../../assets/img/versus.gif";
+import arrowGif from "../../assets/img/monophy.gif";
 
 class Game extends Component {
     constructor(props) {
@@ -193,16 +194,18 @@ class Game extends Component {
                             </div>
                         </div>
                     )}
-                    {this.state.isEnd && (
-                        <Modal className={"game__modal-result"}>
-                            {this.endMatch()}
-                            <h1>{this.state.result}</h1>
-                            <h1>{this.state.result}</h1>
-                            <h1>{this.state.result}</h1>
-                        </Modal>
-                    )}
-                </div>
-            </div>
+                    {
+                        this.state.isEnd && (
+                            <Modal className={"game__modal-result"}>
+                                {this.endMatch()}
+                                <h1>{this.state.result}</h1>
+                                <h1>{this.state.result}</h1>
+                                <h1>{this.state.result}</h1>
+                            </Modal>
+                        )
+                    }
+                </div >
+            </div >
         );
     }
 }
