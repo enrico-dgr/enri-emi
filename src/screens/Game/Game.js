@@ -242,6 +242,13 @@ class Game extends Component {
                                     {this.props.playerName}
                                 </p>
                             </div>
+                            <div className={'game__content__match__hint'}>
+                                Help
+                                <div>
+                                    Scroll images horizontally <br />
+                                    and click one.
+                                </div>
+                            </div>
                         </div>
                     )}
 

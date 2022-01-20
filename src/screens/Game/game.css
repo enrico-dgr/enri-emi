@@ -216,6 +216,42 @@ for explanations */
 }
 
 /*       */
+
+.game__content__match__hint {
+    color: #000;
+    bottom: 5px;
+    font-size: 19px;
+    font-weight: 700;
+    height: fit-content;
+    left: 5px;
+    position: fixed;
+    text-shadow: 0 0 8px white;
+    transition: all 0.5s easy;
+    width: fit-content;
+}
+
+.game__content__match__hint > div {
+    background-color: #000000bd;
+    bottom: 0;
+    color: #f5bc00;
+    font-size: 22px;
+    height: 0;
+    left: 0;
+    opacity: 0;
+    padding: 5px;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 0 1px black;
+    transition: all 1s easy;
+    width: 0;
+}
+
+.game__content__match__hint:hover > div {
+    height: 100px;
+    opacity: 1;
+    width: 150px;
+}
+
 .game__modal-result {
     color: black;
     height: 60vh;
@@ -327,8 +363,11 @@ for explanations */
 }
 
 @media only screen and (max-height: 670px) {
+    .game__content .title {
+        margin: -4px 0 15px 0;
+    }
     .game__content__match .round {
-        margin: 0 0 5px 0;
+        margin: 0;
     }
 
     .game__content__match > img {

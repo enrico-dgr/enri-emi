@@ -153,7 +153,7 @@ class Select3D extends Component {
             this.timeoutResetAnimation = setTimeout(() => {
                 this.setState({ move: "reset" });
             }, 500);
-        }, 4500);
+        }, 3500);
     };
 
     /**

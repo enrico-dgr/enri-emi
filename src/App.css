@@ -35,6 +35,36 @@ body {
     transition: opacity 0.8s;
 }
 
+.app__landscape-view-message {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    height: 105vw;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    user-select: none;
+    top: 0;
+    transform-origin: left top;
+    transform: rotate(-90deg) translateX(-100%);
+    width: 105vh;
+    z-index: -2;
+    transition: background-color 0.5s ease;
+}
+
+.app__landscape-view-message div {
+    background-image: url("./assets/rotation.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 0 10px green;
+    filter: invert();
+    height: 150px;
+    opacity: 0;
+    width: 150px;
+    transition: opacity 0.5s ease;
+    transform: rotateY(180deg);
+}
+
 @media only screen and (min-width: 530px) and (min-height: 200px) and (max-height: 500px) and (orientation: landscape) {
     .project-enri-emi > .scoreboard-transition-screen {
         transform-origin: left top;
@@ -42,5 +72,38 @@ body {
         height: 120vw;
         width: 120vh;
         overflow: hidden;
+    }
+
+    /* Cover everything */
+    .app__landscape-view-message {
+        background-color: rgba(0, 0, 0, 0.733);
+        z-index: 10;
+    }
+
+    .app__landscape-view-message div {
+        opacity: 1;
+
+        animation: rotate;
+        animation-duration: 1.7s;
+        animation-iteration-count: infinite;
+        animation-timing-function: cubic-bezier();
+    }
+}
+
+@keyframes rotate {
+    0% {
+        box-shadow: 0 0 10px green;
+    }
+    25% {
+        box-shadow: 0 0 1px green;
+    }
+    50% {
+        box-shadow: 0 0 10px green;
+    }
+    75% {
+        box-shadow: 0 0 1px green;
+    }
+    100% {
+        box-shadow: 0 0 10px green;
     }
 }

@@ -107,6 +107,7 @@ class App extends Component {
                         onClickLogout={this.onClickLogout}
                     />
                 )}
+                <div className={'app__landscape-view-message'} ><div></div> </div>
             </div>
         );
     }
