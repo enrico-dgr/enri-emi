@@ -47,23 +47,28 @@
 }
 
 .title {
-    margin: 30px 0 0 0;
-    white-space: pre;
-    text-shadow: 1px 2px 3px #000000;
-    font-weight: 600;
-    font-family: "Inter-SemiBold", "Inter", sans-serif;
     color: #f5bc00;
-    font-size: 28px;
+    font-family: "Inter-SemiBold", "Inter", sans-serif;
+    font-size: 26px;
+    font-weight: 600;
     letter-spacing: 0px;
     line-height: 1.2;
-    text-transform: uppercase;
+    margin: 30px 0 0 0;
     text-align: center;
+    text-shadow: 1px 2px 3px #000000;
+    text-transform: uppercase;
+    white-space: pre;
 }
 
 .rules-content {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.rules-content img {
+    width: 360px;
+    height: 325px;
 }
 
 .rules {
@@ -95,10 +100,13 @@
     border-width: 3px;
     color: rgb(51, 51, 51);
     caret-color: rgb(126, 124, 124);
-    font-size: 16px;
+    font-size: 20px;
+    height: 38px;
     line-height: 1.4px;
-    padding: 15px 40px;
+    max-width: 70vw;
+    padding: 7px 20px;
     text-align: center;
+    width: 280px;
 }
 
 .enter-game input::placeholder {
@@ -219,6 +227,10 @@
     transform: translateY(0);
 }
 
+/*                                 */
+/* Screen rotations and background */
+/*                                 */
+
 /* Keep portrait-layout for landscape in smartphones and rectangular-shaped tablets */
 @media only screen and (min-width: 530px) and (min-height: 200px) and (max-height: 500px) and (orientation: landscape) {
     .registration {
@@ -241,31 +253,48 @@
     }
 }
 
-@media only screen and (min-width: 375px) and (min-height: 600px) {
-    .title {
-        font-size: 30px;
-    }
-    .rules {
-        font-size: 23px;
-    }
+/*       */
+/* Sizes */
+/*       */
+
+@media only screen and (max-width: 340px) {
     .rules-content img {
-        width: 320px;
-        height: 295px;
-    }
-    .enter-game > input {
-        font-size: 21px;
-        padding: 12px 33px;
-    }
-    .enter-game > button {
-        border-radius: 44px;
-        height: 40px;
-        font-size: 18px;
-        padding: 20px 36px;
-        width: 120px;
+        width: 300px;
+        height: 260px;
     }
 }
 
-@media only screen and (min-height: 768px) {
+@media only screen and (max-width: 330px) {
+    .title {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (min-width: 450px) and (min-height: 730px) {
+    .title {
+        font-size: 32px;
+    }
+    .rules {
+        font-size: 26px;
+    }
+    .rules-content img {
+        width: 375px;
+        height: 335px;
+    }
+    .enter-game > input {
+        height: 45px;
+        font-size: 24px;
+        width: 310px;
+    }
+    .enter-game > button {
+        border-radius: 50px;
+        height: 55px;
+        font-size: 22px;
+        width: 150px;
+    }
+}
+
+/* @media only screen and (min-height: 768px) {
     .title {
         font-size: 37px;
     }
@@ -286,4 +315,4 @@
         padding: 22px 44px;
         width: 160px;
     }
-}
+} */

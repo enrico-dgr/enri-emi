@@ -1,12 +1,15 @@
 .scoreboard {
+    align-items: center;
     background: transparent;
     border-radius: 6px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 80%;
-    max-height: 60%;
+    height: 550px;
+    min-height: 40%;
+    max-height: 70%;
+    margin: 0;
     overflow: hidden;
+    width: 80%;
 }
 
 .scoreboard h2 {
@@ -66,7 +69,7 @@
 .scoreboard__buttons > button:hover {
     background-color: #8a4040;
 }
-
+/* 
 @media only screen and (min-height: 768px) {
     .scoreboard h2 {
         font-size: 30px;
@@ -93,4 +96,4 @@
     .scoreboard .searchbar input {
         font-size: 27px;
     }
-}
+} */

@@ -70,10 +70,6 @@ class Registration extends Component {
                         <img
                             src={rules}
                             alt="Rules"
-                            // size 500 x 413, so 500/413=350/290
-                            // then it will be scaled based on device
-                            width="350"
-                            height="290"
                         />
                     </div>
                 </div>
