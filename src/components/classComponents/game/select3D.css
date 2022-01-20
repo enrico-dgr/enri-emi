@@ -10,29 +10,34 @@
 /* MODAL */
 /*       */
 .select-3d__container .meep-meep-modal {
-    padding: 20px 40px;
+    background-color: #4c002e;
+    border: 7px double #f5bc00;
+    max-width: 85%;
+    padding: 20px 30px;
     text-align: center;
-
-    background-color: #1f8b8ba4;
 }
 
 .select-3d__container .meep-meep-modal p {
-    font-size: 20px;
+    color: rgb(255, 208, 0);
+    font-size: 26px;
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
         "Lucida Sans", Arial, sans-serif;
-    color: rgb(255, 208, 0);
     text-shadow: 0 0 20px black, 8px 4px 10px rgba(91, 0, 133, 0.685);
 }
 
 .select-3d__container .meep-meep-modal button {
-    padding: 4px 8px;
-    width: 70px;
-
     background-color: transparent;
     border: 0;
     color: white;
-    font-size: 20px;
-    text-shadow: 0 0 10px black, 8px 4px 15px rgba(133, 0, 78, 0.644);
+    font-size: 25px;
+    padding: 4px 8px;
+    transition: all 0.4s ease;
+    text-shadow: 0 0 5px black, 0 3px 5px black;
+    width: 70px;
+}
+
+.select-3d__container .meep-meep-modal button:active {
+    transform: translateY(3px);
 }
 
 /*           */
@@ -71,6 +76,7 @@
     display: flex;
     flex-direction: column;
     height: 120px;
+    justify-content: flex-end;
     left: 0;
     position: absolute;
     top: 0;
@@ -84,7 +90,7 @@
 }
 
 .select-3d__face .choice {
-    margin: 0;
+    margin: 5px 0 2px 0;
     /* margin-bottom: 10px; */
     font-family: "Inter-SemiBold", "Inter", sans-serif;
     color: #f5bc00;

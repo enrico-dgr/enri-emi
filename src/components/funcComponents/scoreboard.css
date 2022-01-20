@@ -25,6 +25,10 @@
     text-align: center;
 }
 
+.scoreboard .searchbar input {
+    font-size: 16px;
+}
+
 .scoreboard__list {
     box-shadow: 0 2px 0 #ac4444;
     overflow-y: auto;
